@@ -40,7 +40,7 @@ if(isset($_GET['page']) && isset($_GET['category'])){
 		$key=$_GET['key'];
 		$key=trim($key);
 		$dk.="AND (";
-		$dk.="upper(ProductName) like '%$key%' OR Color like '%$key%' OR upper(CatalogID) like '%$key%' OR Price like '%$key%'";
+		$dk.="upper(Name) like '%$key%' OR Color like '%$key%' OR upper(CatalogID) like '%$key%' OR Price like '%$key%'";
 		$dk.=")";
 	}
 	if($_GET['sort']!=" "){

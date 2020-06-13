@@ -96,92 +96,11 @@ session_start();
 	  
   </head>
   <body>
-	  <form class="form-info" action="" onSubmit="return checkinfo();"  id="info" name="info" method="post" >
-					<h1 align="center">USER INFO</h1>
-					
-					<hr>
-		 			 <div class="form-group row">
-							<div class="col-md-6">
-								<label for="infofirstname"> <b>First Name</b> </label>
-								<input id="infofirstname" type="text" placeholder="Last Name" name="firstname" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['firstname'];
-								}  
-						}
-					  ?>">
-								<div class="error">Invalid information</div>
-							</div>
-							<div class="col-md-6">
-								<label for="infolname"> <b>Last Name</b> </label>
-								<input id="infolastname" type="text" placeholder="Name" name="lastname" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['lastname'];
-								}  
-						}
-					  ?>">
-								<div class="error">Invalid information</div>
-							</div>
-						</div>
-						
-						
-					<div class="form-group">
-						<div class="col-md-11">
-							<label for="infousername"><b> Username</b></label>
-							<input id="infousername" type="text" placeholder="Username" name="username" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['username'];
-								}  
-						}
-					  ?>" readonly disabled>
-
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-11">
-							<label for="infopassword"><b> Password </b></label>
-							<input id="infopassword" type="password" placeholder="Password" name="password" class="form-control" value="password" readonly disabled>
-								<div class="error-1">Invalid information</div>
-						</div>
-					</div>
-		  		<div class="form-group row">
-							<div class="col-md-6">
-								<label for="infoemail" > <b> Email </b></label>
-								<input id="infoemail" type="text" placeholder="Email" name="email" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['Email'];
-								}  
-						}
-					  ?>">
-								<div class="error-1" id="info_err_email">Invalid information</div>
-							</div>
-							<div class="col-md-6">
-								<label for="infophone"><b>Phone number </b></label>
-								<input id="infophone" type="text" placeholder="Phone number" name="phone" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['phone'];
-								}  
-						}
-					  ?>">
-								<div class="error-1" id="info_err_phone">Invalid information</div>
-							</div>
-						</div>
-						<div align="center" class="selection-box">
-							<input type="submit" id="submitupload" name="submitUpload" value="UPLOAD">
-						</div>
-	</form>
-	  
-	
 	<?php
-		include 'signin-form.php';
-		include 'signup-form.php';
-	?>
-			
-	
+    include 'userinfor-form.php';
+    include 'signin-form.php';
+    include 'signup-form.php';
+  ?>
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
@@ -416,39 +335,32 @@ session_start();
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="row">
               <div class="col-md-12">
-                <h3 class="footer-heading mb-4">Navigations</h3>
+                <h3 class="footer-heading mb-4">Leather collection</h3>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Sell online</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Shopping cart</a></li>
-                  <li><a href="#">Store builder</a></li>
+                  <li><a href="shop.php">Leather wallet</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Mobile commerce</a></li>
-                  <li><a href="#">Dropshipping</a></li>
-                  <li><a href="#">Website development</a></li>
+                  <li><a href="shop.php">Leather belts</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Point of sale</a></li>
-                  <li><a href="#">Hardware</a></li>
-                  <li><a href="#">Software</a></li>
+                  <li><a href="shop.php">Leather bag</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4">Promo</h3>
-            <a href="#" class="block-6">
-              <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-              <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-              <p></p>
-            </a>
+            <h3 class="footer-heading mb-4">Receive notification</h3>
+              <form action="receive-email.php" method="post">
+                <input type="email" name="r_email" placeholder="Enter your email" class="form-control">
+                <input type="submit" name="sub" value="Subscribe" class="btn">
+              </form>              
+              
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="block-5 mb-5">
@@ -456,7 +368,7 @@ session_start();
               <ul class="list-unstyled">
                 <li class="address">273 An Duong Vuong street, District 5, Ho Chi Minh city</li>
                 <li class="phone"><a href="#">039 548 2136</a></li>
-                <li class="email">LittleKings@gmail.com</li>
+                <li class="email">littleKings@gmail.com</li>
               </ul>
             </div>
 

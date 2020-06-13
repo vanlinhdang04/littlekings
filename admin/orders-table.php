@@ -406,19 +406,13 @@ if(isset($_POST['oi_orderid']) && isset($_POST['oi_status'])){
 
     <section class="content">
         <div class="container-fluid">
-            <div class="block-header col-md-2">
-                <h2>
-                    <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" data-toggle='modal' data-target='#addProduct'>Add Product</button>
-<!--                    <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small>-->
-                </h2>
-            </div>
             <!-- Exportable Table -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                PRODUCTS TABLE
+                                ORDER TABLE
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">

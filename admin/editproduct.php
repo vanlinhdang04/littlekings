@@ -6,7 +6,7 @@ if(isset($_FILES['pi_image'])){
 	}
 	else{
 		move_uploaded_file($_FILES['pi_image']['tmp_name'],'../images/'.$_FILES['pi_image']['name']);
-		$image='images/'.$_FILES['pi_image']['name'];
+		$image='images/products/'.$_FILES['pi_image']['name'];
 	}
 }
 //echo $image;
@@ -19,9 +19,9 @@ if(isset($_POST['pi_productid']) && isset($_POST['pi_productname'])){
 	$price=$_POST['pi_price'];
 	$amount=$_POST['pi_amount'];
 	$status=$_POST['pi_status'];
-	$sql="UPDATE `products` SET `ProductName`='$name',`CatalogID`='$catalog',`Color`='$color',`Price`='$price',`Amount`='$amount',`Status`='$status' WHERE ProductID='$id'";
+	$sql="UPDATE `products` SET `Name`='$name',`CatalogID`='$catalog',`Color`='$color',`Price`='$price',`Amount`='$amount',`Status`='$status' WHERE ID='$id'";
 	if($image!=""){
-		$sql="UPDATE `products` SET `ProductName`='$name',`CatalogID`='$catalog',`Color`='$color',`Price`='$price',`Amount`='$amount',`Status`='$status',   `Image`='$image' WHERE ProductID='$id'";
+		$sql="UPDATE `products` SET `Name`='$name',`CatalogID`='$catalog',`Color`='$color',`Price`='$price',`Amount`='$amount',`Status`='$status',   `Image`='$image' WHERE ID='$id'";
 	}
 	echo $sql;
 	mysqli_query($connect,$sql);

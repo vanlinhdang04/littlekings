@@ -44,10 +44,11 @@ class ShopSingle extends SanPham{
 			$str.='<div class="input-group-prepend">';
 			$str.='<button class="btn btn-outline-primary " type="button" id="minus">&minus;</button>';
 			$str.='</div>';
-			$str.='<input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="sl">';
+			$str.='<input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="sl" max='.$row["Amount"].' readonly>';
 			$str.='<div class="input-group-append">
                 <button class="btn btn-outline-primary " type="button" id="plus">&plus;</button>
               </div>';
+            $str.='<div>Amount : '.$row["Amount"].'</div>';
 			$str.='</div>';
 			$str.='</div>';
 			$str.='<p id="addCart" title="'.$row["ID"].'"><a class="buy-now btn btn-sm btn-primary" style="color:white">Add To Cart</a></p>';
@@ -57,15 +58,11 @@ class ShopSingle extends SanPham{
 	}
 	public function productslist(){
 		$str="";
-		$sql1="SELECT * From products WHERE Status=1 AND ProductID='$this->id'";
+		$sql1="SELECT * From products WHERE Status=1 Order by rand() Limit 5";
 		SanPham::select($sql1);
-		$dem=0;
-		while($row1=SanPham::fetch_array_table()){
-			
-			$sql='SELECT * FROM products WHERE Status=1 AND ID BETWEEN '.($row1["ID"]-3).' And '.($row1["ID"]+3);
-			
-			SanPham::select($sql);
-			while($row=SanPham::fetch_array_table()){
+		//$dem=0;
+		while($row=SanPham::fetch_array_table()){
+				$str.='<div class="owl-item active">';
 				$str.='<div class="item">';
 				$str.='<div class="block-4 text-center">';
 				$str.='<figure class="block-4-image">';
@@ -75,10 +72,9 @@ class ShopSingle extends SanPham{
 				$str.='</figure>';
 				$str.='<div class="block-4-text p-4">';
 				$str.='<h3><a href="shop-single.php?id='.$row["ID"].'">'.$row["Name"].'</a></h3>';
-				$str.='<p class="mb-0">Finding perfect t-shirt</p>';
+				$str.='<p class="mb-0"></p>';
 				$str.='<p class="text-primary font-weight-bold">$'.$row["Price"].'</p>';
-				$str.='</div></div></div>';
-			}
+				$str.='</div></div></div></div>';
 		}
 		
 		return($str);

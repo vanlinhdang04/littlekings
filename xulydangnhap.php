@@ -6,7 +6,7 @@ $mk=$_POST['password'];
 $mk=md5($mk);
 if(isset($_POST['logout']) && $_POST['logout']==1){
 	unset($_SESSION['isLogin']);
-	unset($_SESSION['nameLogin']);
+	unset($_SESSION['nameLogin']); 
 	unset($_SESSION['role']);
 	
 	unset($_SESSION['fullname']);

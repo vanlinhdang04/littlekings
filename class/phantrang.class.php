@@ -42,7 +42,9 @@ class PhanTrang extends SanPham{
 		SanPham::select($sql);
 		$str='<div class="row mb-5" id="products">';
 		
-		//if(!SanPham::fetch_array_table(SanPham::select($sql))) die('k sp');
+		if(SanPham::select_count()==0){
+			$str.='No results available.';
+		};
 		while($row=SanPham::fetch_array_table()){
 			$str.='<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">';
 			$str.='<div class="block-4 text-center border">';

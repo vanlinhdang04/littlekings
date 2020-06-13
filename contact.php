@@ -24,100 +24,30 @@ session_start();
 	<link rel="stylesheet" href="css/Form.css">
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/dangnhap_dangky.js"></script>
-    
+  <script type="text/javascript">
+    function check(){
+      var testemail=/^[0-9A-Za-z]+[0-9A-Za-z_.-]*@[\w\d.]+\.\w{2,4}$/;
+      var testphone=/^(08|09|03|07|05)\d{8}$/;
+      var flag=true;
+      if(!testemail.test($("#c_email").val())){
+        $("#c_email").addClass("ui-state-error");
+        flag=false;
+      }
+      if($('#c_fname').val()==""){
+        $('#c_fname').addClass('ui-state-error');
+          flag=false;
+      }
+      if(flag==false) return flag;
+    }
+  </script>
   </head>
   <body>
 	  
-	  <form class="form-dangnhap " action="" onSubmit="return checkLogin();"  id="log-in-form" name="log-in-form" method="post">
-			<h1>Sign in</h1>
-			<p>Enter your account and password to make a purchase</p>
-			<hr>
-		<div class="form-group">
-				<div class="col-md-11">
-						<label for="dn_username"><b> Username</b></label>
-						<input id="dn_username" type="text" placeholder="Username" name="username" class="form-control">
-<!--		<div class="error-1">Invalid information</div>-->
-				</div>
-		</div>
-		<div class="form-group">
-				<div class="col-md-11">
-						<label for="dn_password"><b> Password </b></label>
-						<input id="dn_password" type="password" placeholder="Password" name="password" class="form-control">
-						<div class="error-1">Invalid information</div>
-				</div>
-		</div>
-		<div class="selection-box">
-				<input type="button" class="cancel-btn" id="cancel-log-in" value="Cancel">
-				<input type="submit" id="a" name="log-in-submit" value="Sign in">
-				<div class="no-hope">
-					<a href="#"> <h6>Forgot password?</h6> </a>
-					<a href="#"> <h6 id="noacc"> No account? registration</h6> </a>
-				</div>
-		</div>
-	</form>
-	  
-			
-	<form class="form-dangnhap" onSubmit="return checkSignup()" id="registration-form" name="registration-form" method="post">
-			<h1>Register an account</h1>
-			<p>Please enter the required information below</p>
-			<hr>
-						
-			<div class="form-group row">
-				<div class="col-md-6">
-					<label for="dk_fname"> <b>First Name</b><span class="text-danger">*</span> </label>
-					<input id="dk_fname" type="text" placeholder="Last Name" name="firstname" class="form-control">
-					<div class="error">Invalid information</div>
-				</div>
-				<div class="col-md-6">
-					<label for="dk_lname"> <b>Last Name</b><span class="text-danger">*</span> </label>
-					<input id="dk_lname" type="text" placeholder="Name" name="lastname" class="form-control">
-					<div class="error">Invalid information</div>
-				</div>
-			</div>
-						
-			<div class="form-group row">
-				<div class="col-md-6">
-					<label for="dk_email" > <b> Email </b><span class="text-danger">*</span></label>
-					<input id="dk_email" type="text" placeholder="Email" name="email" class="form-control">
-					<div class="error-1" id="dk_err_email">Invalid information</div>
-				</div>
-				<div class="col-md-6">
-					<label for="dk_phone"><b>Phone number </b><span class="text-danger">*</span></label>
-					<input id="dk_phone" type="text" placeholder="Phone number" name="phone" class="form-control">
-					<div class="error-1" id="dk_err_phone">Invalid information</div>
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-md-12">
-					<label for="dk_username"> <b> Username </b><span class="text-danger">*</span>
-						<i style="font-size: 14px; padding-left:5px">(Minimum 5 characters)</i> </label>
-					<input id="dk_username" type="text" placeholder="Username" name="username" class="form-control">
-					<div class="error-1" id="dk_err_username">Invalid information</div>
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-md-6">
-					<label for="dk_password"> <b>Password</b><span class="text-danger">*</span> 
-					 	<i style="font-size: 14px; padding-left:5px">(Minimum 5 characters)</i> </label>
-					<input id="dk_password" type="password" placeholder="Password" name="password" class="form-control">
-					<div class="error-1" id="dk_err_password">Invalid information</div>
-				</div>
-				<div class="col-md-6">
-					<label for="dk_repassword"> <b>Retype password</b><span class="text-danger">*</span> </label>
-					<input id="dk_repassword" type="password" placeholder="Retype password" name="psw-repeat" class="form-control">
-					<div class="error-1" id="dk_err_repassword">Invalid information</div>
-				</div>
-			</div>
-						
-			<div class="selection-box">
-				<input type="submit" name="log-in-submit" value="Register">
-				<input type="button" class="cancel-btn" id="cancel-log-in" value="Cancel">
-							
-			</div>
-			<div class="no-hope">
-					<a href="#"> <h6 id="haveacc"> Have a account? Login</h6> </a>
-			</div>
-	</form>
+	<?php
+    include 'userinfor-form.php';
+    include 'signin-form.php';
+    include 'signup-form.php';
+  ?>
   
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
@@ -212,17 +142,13 @@ session_start();
           </div>
           <div class="col-md-7">
 
-            <form action="#" method="post">
+            <form action="sendcontact.php" method="post" onsubmit="return check()">
               
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
-                  <div class="col-md-6">
-                    <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
+                  <div class="col-md-12">
+                    <label for="c_fname" class="text-black">Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="c_fname" name="c_fname">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="c_lname" name="c_lname">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -254,18 +180,10 @@ session_start();
           </div>
           <div class="col-md-5 ml-auto">
             <div class="p-4 border mb-3">
-              <span class="d-block text-primary h6 text-uppercase">New York</span>
-              <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
+              <span class="d-block text-primary h6 text-uppercase">Ho Chi Minh City</span>
+              <p class="mb-0">274 An Duong Vuong Street, District 5, Ho Chi Minh, VN</p>
             </div>
-            <div class="p-4 border mb-3">
-              <span class="d-block text-primary h6 text-uppercase">London</span>
-              <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
-            </div>
-            <div class="p-4 border mb-3">
-              <span class="d-block text-primary h6 text-uppercase">Canada</span>
-              <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
-            </div>
-			  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6696584236892!2d106.68006961468384!3d10.759922362440646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1b7c3ed289%3A0xa06651894598e488!2zxJDhuqFpIEjhu41jIFPDoGkgR8Oybg!5e0!3m2!1svi!2s!4v1557226216131!5m2!1svi!2s" width="400" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+			  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.7088390199824!2d106.67362757844087!3d10.756908177400353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752efd33cfe1c7%3A0x9e957f17f775dc46!2zMjc0IEFuIETGsMahbmcgVsawxqFuZywgUGjGsOG7nW5nIDgsIFF14bqtbiA1LCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1592056330201!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
           </div>
         </div>
       </div>
@@ -281,28 +199,28 @@ session_start();
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather wallet</a></li>
+                  <li><a href="shop.php">Leather wallet</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather belts</a></li>
+                  <li><a href="shop.php">Leather belts</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather bag</a></li>
+                  <li><a href="shop.php">Leather bag</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4">Receive promotion notice</h3>
-            <a href="#" class="block-6">
-              <input type="text" name="premail" placeholder="Enter your email" class="form-control">
-              <input type="button" name="sub" value="Subscribe" class="btn">              
-              <p></p>
-            </a>
+            <h3 class="footer-heading mb-4">Receive notification</h3>
+              <form action="receive-email.php" method="post">
+                <input type="email" name="r_email" placeholder="Enter your email" class="form-control">
+                <input type="submit" name="sub" value="Subscribe" class="btn">
+              </form>              
+              
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="block-5 mb-5">

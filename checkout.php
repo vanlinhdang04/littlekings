@@ -73,175 +73,11 @@ if(isset($_SESSION['userid'])){
 	</script>
   </head>
   <body>
-	  <form class="form-info" action="" onSubmit="return checkinfo();"  id="info" name="info" method="post" >
-					<h1 align="center">USER INFO</h1>
-					
-					<hr>
-		 			 <div class="form-group row">
-							<div class="col-md-6">
-								<label for="infofirstname"> <b>First Name</b> </label>
-								<input id="infofirstname" type="text" placeholder="Last Name" name="firstname" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['firstname'];
-								}  
-						}
-					  ?>">
-								<div class="error">Invalid information</div>
-							</div>
-							<div class="col-md-6">
-								<label for="infolname"> <b>Last Name</b> </label>
-								<input id="infolastname" type="text" placeholder="Name" name="lastname" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['lastname'];
-								}  
-						}
-					  ?>">
-								<div class="error">Invalid information</div>
-							</div>
-						</div>
-						
-						
-					<div class="form-group">
-						<div class="col-md-11">
-							<label for="infousername"><b> Username</b></label>
-							<input id="infousername" type="text" placeholder="Username" name="username" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['username'];
-								}  
-						}
-					  ?>" readonly disabled>
-
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-11">
-							<label for="infopassword"><b> Password </b></label>
-							<input id="infopassword" type="password" placeholder="Password" name="password" class="form-control" value="password" readonly disabled>
-								<div class="error-1">Invalid information</div>
-						</div>
-					</div>
-		  		<div class="form-group row">
-							<div class="col-md-6">
-								<label for="infoemail" > <b> Email </b></label>
-								<input id="infoemail" type="text" placeholder="Email" name="email" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['Email'];
-								}  
-						}
-					  ?>">
-								<div class="error-1" id="info_err_email">Invalid information</div>
-							</div>
-							<div class="col-md-6">
-								<label for="infophone"><b>Phone number </b></label>
-								<input id="infophone" type="text" placeholder="Phone number" name="phone" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['phone'];
-								}  
-						}
-					  ?>">
-								<div class="error-1" id="info_err_phone">Invalid information</div>
-							</div>
-						</div>
-						<div align="center" class="selection-box">
-							<input type="submit" id="submitupload" name="submitUpload" value="UPLOAD">
-						</div>
-	</form>
-	  
-	  <form class="form-dangnhap " action="" onSubmit="return checkLogin();"  id="log-in-form" name="log-in-form" method="post">
-			<h1>Sign in</h1>
-			<p>Enter your account and password to make a purchase</p>
-			<hr>
-		<div class="form-group">
-				<div class="col-md-11">
-						<label for="dn_username"><b> Username</b></label>
-						<input id="dn_username" type="text" placeholder="Username" name="username" class="form-control">
-<!--		<div class="error-1">Invalid information</div>-->
-				</div>
-		</div>
-		<div class="form-group">
-				<div class="col-md-11">
-						<label for="dn_password"><b> Password </b></label>
-						<input id="dn_password" type="password" placeholder="Password" name="password" class="form-control">
-						<div class="error-1">Invalid information</div>
-				</div>
-		</div>
-		<div class="selection-box">
-				<input type="button" class="cancel-btn" id="cancel-log-in" value="Cancel">
-				<input type="submit" id="a" name="log-in-submit" value="Sign in">
-				<div class="no-hope">
-					
-					<a href="#"> <h6 id="noacc"> No account? registration</h6> </a>
-				</div>
-		</div>
-	</form>
-	  
-			
-	<form class="form-dangnhap" onSubmit="return checkSignup()" id="registration-form" name="registration-form" method="post">
-			<h1>Register an account</h1>
-			<p>Please enter the required information below</p>
-			<hr>
-						
-			<div class="form-group row">
-				<div class="col-md-6">
-					<label for="dk_fname"> <b>First Name</b><span class="text-danger">*</span> </label>
-					<input id="dk_fname" type="text" placeholder="Last Name" name="firstname" class="form-control">
-					<div class="error">Invalid information</div>
-				</div>
-				<div class="col-md-6">
-					<label for="dk_lname"> <b>Last Name</b><span class="text-danger">*</span> </label>
-					<input id="dk_lname" type="text" placeholder="Name" name="lastname" class="form-control">
-					<div class="error">Invalid information</div>
-				</div>
-			</div>
-						
-			<div class="form-group row">
-				<div class="col-md-6">
-					<label for="dk_email" > <b> Email </b><span class="text-danger">*</span></label>
-					<input id="dk_email" type="text" placeholder="Email" name="email" class="form-control">
-					<div class="error-1" id="dk_err_email">Invalid information</div>
-				</div>
-				<div class="col-md-6">
-					<label for="dk_phone"><b>Phone number </b><span class="text-danger">*</span></label>
-					<input id="dk_phone" type="text" placeholder="Phone number" name="phone" class="form-control">
-					<div class="error-1" id="dk_err_phone">Invalid information</div>
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-md-12">
-					<label for="dk_username"> <b> Username </b><span class="text-danger">*</span>
-						<i style="font-size: 14px; padding-left:5px">(Minimum 5 characters)</i> </label>
-					<input id="dk_username" type="text" placeholder="Username" name="username" class="form-control">
-					<div class="error-1" id="dk_err_username">Invalid information</div>
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-md-6">
-					<label for="dk_password"> <b>Password</b><span class="text-danger">*</span> 
-					 	<i style="font-size: 14px; padding-left:5px">(Minimum 5 characters)</i> </label>
-					<input id="dk_password" type="password" placeholder="Password" name="password" class="form-control">
-					<div class="error-1" id="dk_err_password">Invalid information</div>
-				</div>
-				<div class="col-md-6">
-					<label for="dk_repassword"> <b>Retype password</b><span class="text-danger">*</span> </label>
-					<input id="dk_repassword" type="password" placeholder="Retype password" name="psw-repeat" class="form-control">
-					<div class="error-1" id="dk_err_repassword">Invalid information</div>
-				</div>
-			</div>
-						
-			<div class="selection-box">
-				<input type="submit" name="log-in-submit" value="Register">
-				<input type="button" class="cancel-btn" id="cancel-log-in" value="Cancel">
-							
-			</div>
-			<div class="no-hope">
-					<a href="#"> <h6 id="haveacc"> Have a account? Login</h6> </a>
-			</div>
-	</form>
+	<?php
+		include 'userinfor-form.php';
+		include 'signin-form.php';
+		include 'signup-form.php';
+	?>
   
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
@@ -359,7 +195,7 @@ if(isset($_SESSION['userid'])){
               <div class="form-group row">
                 <div class="col-md-12">
                   <label for="c_fname" class="text-black">Full Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_fname" name="c_fname" value="<?php if(isset($_SESSION['userid'])){ echo $row['Firstname'];} ?>">
+                  <input type="text" class="form-control" id="c_fname" name="c_fname" value="<?php if(isset($_SESSION['userid'])){ echo $row['Name'];} ?>">
 					
                 </div>
               </div>
@@ -633,28 +469,28 @@ if(isset($_SESSION['userid'])){
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather wallet</a></li>
+                  <li><a href="shop.php">Leather wallet</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather belts</a></li>
+                  <li><a href="shop.php">Leather belts</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather bag</a></li>
+                  <li><a href="shop.php">Leather bag</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4">Receive promotion notice</h3>
-            <a href="#" class="block-6">
-            	<input type="text" name="premail" placeholder="Enter your email" class="form-control">
-            	<input type="button" name="sub" value="Subscribe" class="btn">              
-              <p></p>
-            </a>
+            <h3 class="footer-heading mb-4">Receive notification</h3>
+              <form action="receive-email.php" method="post">
+                <input type="email" name="r_email" placeholder="Enter your email" class="form-control">
+                <input type="submit" name="sub" value="Subscribe" class="btn">
+              </form>              
+              
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="block-5 mb-5">

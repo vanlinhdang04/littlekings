@@ -1,6 +1,6 @@
 ﻿<?php
 session_start();
-if($_SESSION['role']!=2){
+if($_SESSION['role']!=2 and $_SESSION['role']!=1){
 	
 	header('Location: blank.php');
 }
@@ -17,7 +17,7 @@ else{
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Admin Shoppers</title>
+    <title>LitteKings - Admin</title>
     <!-- Favicon-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
@@ -243,7 +243,7 @@ else{
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="../../index.html">ADMINBSB - MATERIAL DESIGN</a>
+                <a class="navbar-brand" href="../../index.html">Product Management</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -312,10 +312,10 @@ else{
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2018 - 2019 <a href="javascript:void(0);">Admin - ShoppersTeam Design</a>.
+                    &copy; 2019 - 2020 <a href="javascript:void(0);">Little Kings - Admin Site</a>.
                 </div>
                 <div class="version">
-                    <b>Version: </b> 1.0.5
+                    <b>Version: </b> 1.0
                 </div>
             </div>
             <!-- #Footer -->
@@ -504,7 +504,6 @@ else{
                                 <table id="products" class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
-											<th>ID</th>
                                             <th>Product ID</th>
                                             <th>Product Name</th>
                                             <th>Catalog ID</th>
@@ -518,10 +517,9 @@ else{
                                     </thead>
                                     <tfoot>
                                         <tr>
-											<th>ID</th>
                                             <th>Product ID</th>
                                             <th>Product Name</th>
-                                            <th>Catalog ID</th>
+                                            <th>Catalog</th>
                                             <th>Color</th>
                                             <th>Price</th>
                                             <th>Amount</th>
@@ -533,14 +531,13 @@ else{
                                     <tbody>
 										<?php
 										include_once("../ketnoi.php");
-										$results=mysqli_query($connect,"SELECT * FROM products");
+										$results=mysqli_query($connect,"SELECT * FROM products inner join catalog on products.CatalogID=catalog.CatalogID");
 										$str="";
 										while($row=mysqli_fetch_assoc($results)){
-											$str.='<tr id="'.$row["ProductID"].'" data-toggle="modal" data-target="#productInfo">';
+											$str.='<tr id="'.$row["ID"].'" data-toggle="modal" data-target="#productInfo">';
 											$str.="<td>".$row['ID']."</td>";
-											$str.="<td>".$row['ProductID']."</td>";
-											$str.="<td>".$row['ProductName']."</td>";
-											$str.="<td>".$row['CatalogID']."</td>";
+											$str.="<td>".$row['Name']."</td>";
+											$str.="<td>".$row['CatalogName']."</td>";
 											$str.="<td>".$row['Color']."</td>";
 											$str.="<td>".$row['Price']."</td>";
 											$str.="<td>".$row['Amount']."</td>";

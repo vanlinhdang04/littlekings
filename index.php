@@ -240,87 +240,8 @@
 
   </head>
   <body>
-	  <form class="form-info" action="" onSubmit="return checkinfo();"  id="info" name="info" method="post" >
-					<h1 align="center">USER INFO</h1>
-					
-					<hr>
-		 			 <div class="form-group row">
-							<div class="col-md-6">
-								<label for="infofirstname"> <b>First Name</b> </label>
-								<input id="infofirstname" type="text" placeholder="Last Name" name="firstname" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['firstname'];
-								}  
-						}
-					  ?>">
-								<div class="error">Invalid information</div>
-							</div>
-							<div class="col-md-6">
-								<label for="infolname"> <b>Last Name</b> </label>
-								<input id="infolastname" type="text" placeholder="Name" name="lastname" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['lastname'];
-								}  
-						}
-					  ?>">
-								<div class="error">Invalid information</div>
-							</div>
-						</div>
-						
-						
-					<div class="form-group">
-						<div class="col-md-11">
-							<label for="infousername"><b> Username</b></label>
-							<input id="infousername" type="text" placeholder="Username" name="username" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['username'];
-								}  
-						}
-					  ?>" readonly disabled>
-
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-11">
-							<label for="infopassword"><b> Password </b></label>
-							<input id="infopassword" type="password" placeholder="Password" name="password" class="form-control" value="password" readonly disabled>
-								<div class="error-1">Invalid information</div>
-						</div>
-					</div>
-		  		<div class="form-group row">
-							<div class="col-md-6">
-								<label for="infoemail" > <b> Email </b></label>
-								<input id="infoemail" type="text" placeholder="Email" name="email" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['Email'];
-								}  
-						}
-					  ?>">
-								<div class="error-1" id="info_err_email">Invalid information</div>
-							</div>
-							<div class="col-md-6">
-								<label for="infophone"><b>Phone number </b></label>
-								<input id="infophone" type="text" placeholder="Phone number" name="phone" class="form-control" value="<?php 
-					  		if(isset($_SESSION['isLogin'])){
-								if($_SESSION['isLogin']==1){
-									echo $_SESSION['phone'];
-								}  
-						}
-					  ?>">
-								<div class="error-1" id="info_err_phone">Invalid information</div>
-							</div>
-						</div>
-						<div align="center" class="selection-box">
-							<input type="submit" id="submitupload" name="submitUpload" value="UPLOAD">
-						</div>
-	</form>
-	  
-	  
 	<?php
+		include 'userinfor-form.php';
 		include 'signin-form.php';
 		include 'signup-form.php';
 	?>
@@ -331,10 +252,10 @@
           <div class="row align-items-center">
 
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-              <form action="" class="site-block-top-search">
+              <!-- <form action="shop.php" method="post" class="site-block-top-search">
                 <span class="icon icon-search2"></span>
-                <input type="text" class="form-control border-0" placeholder="Search">
-              </form>
+                <input name="sr" type="text" class="form-control border-0" placeholder="Search">
+              </form> -->
             </div>
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
@@ -417,7 +338,7 @@
             </div>
             <div class="text">
               <h2 class="text-uppercase">Free Shipping</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <p>To assist customers when purchasing products. LittleKings will free shipping for orders in Vietnam</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
@@ -426,7 +347,7 @@
             </div>
             <div class="text">
               <h2 class="text-uppercase">Free Returns</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <p>LittleKing will facilitate free return and exchange within 7 days. Contact 0395482136 for assistance</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
@@ -435,7 +356,7 @@
             </div>
             <div class="text">
               <h2 class="text-uppercase">Customer Support</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <p>LittleKings supports customers with 7-day return and 12-month product warranty</p>
             </div>
           </div>
         </div>
@@ -554,28 +475,28 @@
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather wallet</a></li>
+                  <li><a href="shop.php">Leather wallet</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather belts</a></li>
+                  <li><a href="shop.php">Leather belts</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Leather bag</a></li>
+                  <li><a href="shop.php">Leather bag</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4">Receive promotion notice</h3>
-            <a href="#" class="block-6">
-            	<input type="text" name="premail" placeholder="Enter your email" class="form-control">
-            	<input type="button" name="sub" value="Subscribe" class="btn">              
-              <p></p>
-            </a>
+            <h3 class="footer-heading mb-4">Receive notification</h3>
+              <form action="receive-email.php" method="post">
+                <input type="email" name="r_email" placeholder="Enter your email" class="form-control">
+                <input type="submit" name="sub" value="Subscribe" class="btn">
+              </form>              
+              
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="block-5 mb-5">

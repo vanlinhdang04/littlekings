@@ -1,7 +1,7 @@
 <?php
 $id=$_POST['id'];
 include_once("../ketnoi.php");
-$result=mysqli_query($connect,"SELECT * FROM products WHERE ProductID='$id'");
+$result=mysqli_query($connect,"SELECT * FROM products WHERE ID='$id'");
 $row=mysqli_fetch_assoc($result);
 $rs=mysqli_query($connect,"SELECT * FROM catalog ");
 $str="";
@@ -16,13 +16,13 @@ $str.='<form id="pi" class="form-horizontal" action="editproduct.php" onsubmit="
 									<div class="form-group">
 										<label class="control-label col-md-5">Product ID</label>	
 										<div class="col-md-7">
-											<input id="pi_productid" name="pi_productid" type="text" class="form-control" value="'.$row['ProductID'].'" readonly/>	
+											<input id="pi_productid" name="pi_productid" type="text" class="form-control" value="'.$row['ID'].'" readonly/>	
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-5">Product Name</label>	
 										<div class="col-md-7">
-											<input id="pi_productname" name="pi_productname" type="text" class="form-control" value="'.$row['ProductName'].'" />	
+											<input id="pi_productname" name="pi_productname" type="text" class="form-control" value="'.$row['Name'].'" />	
 										</div>
 									</div>';
 							$str.='<div class="form-group">
@@ -94,10 +94,10 @@ else{
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-4 col-md-2">
-        									<button type="submit" class="btn btn-info">Upload</button>
+        									<button type="submit" class="btn btn-info">Confirm</button>
       									</div>
 										<div class="col-md-offset-3 col-md-2">
-        									<button id="pi_delete" name="'.$row['ProductID'].'" class="btn btn-danger">Delete</button>
+        									<button id="pi_delete" name="'.$row['ID'].'" class="btn btn-danger">Delete</button>
       									</div>
 										
 									</div>

@@ -60,10 +60,10 @@
 		<div class="error-1" id="info_err_phone">Invalid information</div>
 	</div>
     <div class="form-group row">
-        <input type="button" class="form-control" value="Alter Password"/>
+        <input type="button" class="btn" value="Alter Password"/>
     </div>
 </div>
 		<div align="center" class="selection-box">
-        	<input type="submit" id="submitupload" name="submitUpload" value="ALTER>
+        	<input type="submit" id="submitupload" name="submitUpload" value="CONFIRM" />
 		</div>
 </form>

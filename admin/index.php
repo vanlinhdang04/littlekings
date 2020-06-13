@@ -5,7 +5,7 @@ if($_SESSION['role']!=2 && $_SESSION['role']!=1 ){
 }
 
 include_once('../ketnoi.php');
-$rs=mysqli_query($connect,"SELECT * FROM users WHERE Status=1");
+$rs=mysqli_query($connect,"SELECT * FROM users WHERE Status=1 and role=3");
 $totaluser=mysqli_num_rows($rs);
 $rs=mysqli_query($connect,"SELECT * FROM products WHERE Status=1");
 $totalproduct=mysqli_num_rows($rs);
@@ -387,7 +387,7 @@ $totaladmin=mysqli_num_rows($rs);
             </div>
             <!-- #END# Widgets -->
             <!-- CPU Usage -->
-            <div class="row clearfix">
+            <!-- <div class="row clearfix">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="header">
@@ -420,15 +420,15 @@ $totaladmin=mysqli_num_rows($rs);
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- #END# CPU Usage -->
             
           
             
 
-            <div class="row clearfix">
+            <!-- <div class="row clearfix"> -->
                 <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <!-- <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="card">
                         <div class="header">
                             <h2>TASK INFOS</h2>
@@ -520,10 +520,10 @@ $totaladmin=mysqli_num_rows($rs);
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- #END# Task Info -->
                 <!-- Browser Usage -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="card">
                         <div class="header">
                             <h2>BROWSER USAGE</h2>
@@ -544,7 +544,7 @@ $totaladmin=mysqli_num_rows($rs);
                             <div id="donut_chart" class="dashboard-donut-chart"></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- #END# Browser Usage -->
             </div>
         </div>
