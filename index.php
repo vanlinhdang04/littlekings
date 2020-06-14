@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
-	  
 	<link rel="stylesheet" href="css/Form.css">
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -130,77 +129,77 @@
 			
 			return false;
 		}
-		function checkinfo()
-		{
-			"use strict";
-			var testemail=/^[0-9A-Za-z]+[0-9A-Za-z_]*@[\w\d.]+\.\w{2,4}$/;
-			var testphone=/^(08|09|03|07|05)\d{8}$/;
-			var flag=true;
-			$("form#info input").each(function(){
-				if($(this).val()==""){
-					$(this).addClass("ui-state-error");
-					$(this).focus();
-					return false;
-				}
-			});
-			if(!testemail.test($("#infoemail").val())){
-				$("#infoemail").addClass("ui-state-error");
-				$("#info_err_email").html("Email Invalid. ");
-				$("#info_err_email").fadeIn(300);
-				flag=false;
-			}
-			if(!testphone.test($("#infophone").val())){
-				$("#infophone").addClass("ui-state-error");
-				$("#info_err_phone").html("Phone Invalid");
-				$("#info_err_phone").fadeIn(300);
-				flag=false;
-			}
-			if(flag==true){
-				flag=confirm("Do you Edit User ?");
-			}
-			else{
-				return false;
-			}
-			if(flag==false){
-				return flag;
-			}
+		// function checkinfo()
+		// {
+		// 	"use strict";
+		// 	var testemail=/^[0-9A-Za-z]+[0-9A-Za-z_]*@[\w\d.]+\.\w{2,4}$/;
+		// 	var testphone=/^(08|09|03|07|05)\d{8}$/;
+		// 	var flag=true;
+		// 	$("form#info input").each(function(){
+		// 		if($(this).val()=="" ){
+		// 			$(this).addClass("ui-state-error");
+		// 			$(this).focus();
+		// 			return false;
+		// 		}
+		// 	});
+		// 	if(!testemail.test($("#infoemail").val())){
+		// 		$("#infoemail").addClass("ui-state-error");
+		// 		$("#info_err_email").html("Email Invalid. ");
+		// 		$("#info_err_email").fadeIn(300);
+		// 		flag=false;
+		// 	}
+		// 	if(!testphone.test($("#infophone").val())){
+		// 		$("#infophone").addClass("ui-state-error");
+		// 		$("#info_err_phone").html("Phone Invalid");
+		// 		$("#info_err_phone").fadeIn(300);
+		// 		flag=false;
+		// 	}
+		// 	if(flag==true){
+		// 		flag=confirm("Do you Edit User ?");
+		// 	}
+		// 	else{
+		// 		return false;
+		// 	}
+		// 	if(flag==false){
+		// 		return flag;
+		// 	}
 			
-			$.ajax({
-				type:"post",
-				url:"admin/edituser.php",
-				data:{user:0,firstname:$("#infofirstname").val(),lastname:$("#infolastname").val(),
-				  email:$("#infoemail").val(),phone:$("#infophone").val()},
-				success:function(data){
-					//alert(data);
-					if(data.indexOf("1")!=-1)
-						{
-							alert("ERROR:Phone already exists");
-							$("#infophone").addClass("ui-state-error");
-							$("#infophone").focus();
-							$("#info_err_phone").html("Phone Invalid");
-							$("#info_err_phone").fadeIn(300);
+		// 	$.ajax({
+		// 		type:"post",
+		// 		url:"admin/edituser.php",
+		// 		data:{user:0,firstname:$("#infofirstname").val(),lastname:$("#infolastname").val(),
+		// 		  email:$("#infoemail").val(),phone:$("#infophone").val()},
+		// 		success:function(data){
+		// 			//alert(data);
+		// 			if(data.indexOf("1")!=-1)
+		// 				{
+		// 					alert("ERROR:Phone already exists");
+		// 					$("#infophone").addClass("ui-state-error");
+		// 					$("#infophone").focus();
+		// 					$("#info_err_phone").html("Phone Invalid");
+		// 					$("#info_err_phone").fadeIn(300);
 							
-						}
-					if(data.indexOf("2")!=-1)
-						{
-							alert("ERROR:Email already exists");
-							$("#infoemail").addClass("ui-state-error");
-							$("#infoemail").focus();
-							$("#info_err_email").html("Email Invalid. ");
-							$("#info_err_email").fadeIn(300);
+		// 				}
+		// 			if(data.indexOf("2")!=-1)
+		// 				{
+		// 					alert("ERROR:Email already exists");
+		// 					$("#infoemail").addClass("ui-state-error");
+		// 					$("#infoemail").focus();
+		// 					$("#info_err_email").html("Email Invalid. ");
+		// 					$("#info_err_email").fadeIn(300);
 							
-						}
-					if(data==0)
-						{
-							alert("UPLOAD SUCCESSFULLY");
-							window.location.reload();
-						}
-				}
-			});
+		// 				}
+		// 			if(data==0)
+		// 				{
+		// 					alert("UPLOAD SUCCESSFULLY");
+		// 					window.location.reload();
+		// 				}
+		// 		}
+		// 	});
 			
-			return false;
+		// 	return false;
 			
-		}
+		// }
 		$(document).ready(function(){
 			$("form input").mousedown(function(){
 				$(".error-1").fadeOut(300);
@@ -317,7 +316,7 @@
               <a href="about.php">About</a>
             </li>
             <li><a href="shop.php">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
+            <!-- <li><a href="#">Catalogue</a></li> -->
             
             <li><a href="contact.php">Contact</a></li>
           </ul>
@@ -367,7 +366,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-            <a class="block-2-item" href="#">
+            <a class="block-2-item" href="shop.php">
               <figure class="image">
                 <img src="images/V2BuckBrown_03.jpg" alt="" class="img-fluid">
               </figure>
@@ -378,7 +377,7 @@
             </a>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-            <a class="block-2-item" href="#">
+            <a class="block-2-item" href="shop.php">
               <figure class="image">
                 <img src="images/BeltMediumBrownEnglishBridle.jpg" alt="" class="img-fluid">
               </figure>
@@ -389,7 +388,7 @@
             </a>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-            <a class="block-2-item" href="#">
+            <a class="block-2-item" href="shop.php">
               <figure class="image">
                 <img src="images/MarketToteRosewood.jpg" alt="" class="img-fluid">
               </figure>
@@ -424,14 +423,16 @@
 	{
 		$s.='<div class="item">
                 <div class="block-4 text-center">
+                <a href="shop-single.php?id='.$result['ID'].'">
                   <figure class="block-4-image">
                     <img src="images/products/'.$result['Image'].'" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">'.$result['Name'].'</a></h3>
+                    <h3>'.$result['Name'].'</h3>
                     <p class="mb-0">'.$result['CatalogName'].'</p>
                     <p class="text-primary font-weight-bold">'.$result['Price'].' $</p>
                   </div>
+                </a>
                 </div>
               </div>';	
 	}
@@ -533,6 +534,7 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+  <script src="js/dangnhap_dangky.js"></script>
     <!---------------------SLIDESHOW--------------------->
   
 	  <script>

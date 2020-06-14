@@ -48,8 +48,8 @@ class ShopSingle extends SanPham{
 			$str.='<div class="input-group-append">
                 <button class="btn btn-outline-primary " type="button" id="plus">&plus;</button>
               </div>';
-            $str.='<div>Amount : '.$row["Amount"].'</div>';
 			$str.='</div>';
+			$str.='<div>Amount available : '.$row["Amount"].'</div>';
 			$str.='</div>';
 			$str.='<p id="addCart" title="'.$row["ID"].'"><a class="buy-now btn btn-sm btn-primary" style="color:white">Add To Cart</a></p>';
 			$str.='</div>';

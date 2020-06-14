@@ -14,7 +14,7 @@ if(isset($_POST['logout']) && $_POST['logout']==1){
 	unset($_SESSION['Email']);
 	unset($_SESSION['phone']);
 	unset($_SESSION['userid']);
-	
+	unset($_SESSION['cart']);
 	return(false);
 }
 $result=mysqli_query($connect,"SELECT * FROM users WHERE Username='$tk' AND Password='$mk'");
@@ -28,7 +28,7 @@ if(mysqli_num_rows($result)==1){
 	$_SESSION['Email']=$row["Email"];
 	$_SESSION['phone']=$row["Phone"];
 	$_SESSION['userid']=$row["Userid"];
-	
+	$_SESSION['address']=$row["Address"];
 	
 	echo $row["Roleid"];
 }else{

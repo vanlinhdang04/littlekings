@@ -143,7 +143,10 @@ jQuery(document).ready(function($) {
 		});
 		$('.js-btn-plus').on('click', function(e){
 			e.preventDefault();
-			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+			if($(this).closest('.input-group').find('.form-control').val()<parseInt($(this).closest('.input-group').find('.form-control').attr('max'))){
+				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+			}
+			
 		});
 	};
 	sitePlusMinus();

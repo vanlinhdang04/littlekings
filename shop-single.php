@@ -97,8 +97,9 @@
 						alert("Amount Invalid.");
 						return false;
 					}
+          
 				  addCart($(this).attr('title'),soluong);
-				  $('html body').append('<div id="nofi" style="background-color:rgba(85,85,85,0.93);width: 350px;height: 150px;position: fixed;top: 200px;left: 600px;"><img src="images/success.jpg" alt="" width="50px" height="50px" style="border-radius: 50%; opacity: 1;margin-left: 150px;margin-top: 20px"><h2><p style="color:white;margin-left: 40px;margin-top: 20px">Add to cart success.</p></h2></div>');
+          $('html body').append('<div id="nofi" style="background-color:rgba(85,85,85,0.93);width: 350px;height: 150px;position: fixed;top: 200px;left: 600px;"><img src="images/success.jpg" alt="" width="50px" height="50px" style="border-radius: 50%; opacity: 1;margin-left: 150px;margin-top: 20px"><h2><p style="color:white;margin-left: 40px;margin-top: 20px">Add to cart success.</p></h2></div>');
 				  var rm_nofi=function(){
 					  $("#nofi").remove();
 				  }
@@ -197,7 +198,6 @@
               
             </li>
             <li class="active"><a href="shop.php">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
             
             <li><a href="contact.php">Contact</a></li>
           </ul>

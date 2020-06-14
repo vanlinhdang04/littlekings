@@ -2,9 +2,20 @@
 session_start();
 if(isset($_POST['id']) && $_POST['id']!=""){
 	$id=$_POST['id'];
+	require_once('ketnoi.php');
+	$sql="SELECT Amount FROM products WHERE ID='$id'";
+	$rs=mysqli_query($connect,$sql);
+	while ($row=mysqli_fetch_assoc($rs)) {
+		$max=$row['Amount'];
+	}
 	//$size=$_POST['size'];
 	if(isset($_SESSION['cart'][$id])){
-		$_SESSION['cart'][$id]+=$_POST['soluong'];
+		if($_SESSION['cart'][$id]+$_POST['soluong']<=$max){
+			$_SESSION['cart'][$id]+=$_POST['soluong'];
+		}
+		else{
+			$_SESSION['cart'][$id]=$max;
+		}
 	}
 	else{
 		$_SESSION['cart'][$id]=$_POST['soluong'];

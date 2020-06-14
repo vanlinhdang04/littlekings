@@ -297,7 +297,9 @@ else{
 							<li>
                                 <a href="orders-table.php">Orders Table</a>
                             </li>
-                            
+                            <li>
+                                <a href="contact-table.php">Contacts Table</a>
+                            </li>
                         </ul>
                     </li>
                     <li>

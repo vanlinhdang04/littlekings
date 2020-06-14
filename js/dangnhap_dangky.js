@@ -26,8 +26,14 @@
 						window.location.reload();
 					}else{
 						//alert(data);
-						alert("Connect Admin page");
-						window.location.href='http://localhost/littlekings/admin/index.php';
+						var rs=confirm("Connect Admin page");
+						if(rs){
+							window.location.href='http://localhost/littlekings/admin/index.php';
+						}
+						else{
+							window.location.reload();
+						}
+						
 					}
 				}
 			});
@@ -145,9 +151,8 @@ function checkinfo()
 			var testphone=/^(08|09|03|07|05)\d{8}$/;
 			var flag=true;
 			$("form#info input").each(function(){
-				if($(this).val()==""){
+				if($(this).val()=="" && $(this).attr('name')!="address"){
 					$(this).addClass("ui-state-error");
-					$(this).focus();
 					return false;
 				}
 			});
@@ -163,12 +168,6 @@ function checkinfo()
 				$("#info_err_phone").fadeIn(300);
 				flag=false;
 			}
-			if(flag==true){
-				flag=confirm("Do you want edit this User ?");
-			}
-			else{
-				return false;
-			}
 			if(flag==false){
 				return flag;
 			}
@@ -176,10 +175,10 @@ function checkinfo()
 			$.ajax({
 				type:"post",
 				url:"admin/edituser.php",
-				data:{user:0,fullname:$("#infofirstname").val(),lastname:$("#infolastname").val(),
-				  email:$("#infoemail").val(),phone:$("#infophone").val()},
+				data:{user:0,name:$("#infoname").val(),
+				  email:$("#infoemail").val(),phone:$("#infophone").val(),address:$("#infoaddress").val()},
 				success:function(data){
-					//alert(data);
+					alert(data);
 					if(data.indexOf("1")!=-1)
 						{
 							alert("ERROR:Phone already exists");
@@ -198,9 +197,9 @@ function checkinfo()
 							$("#info_err_email").fadeIn(300);
 							
 						}
-					if(data==0)
+					if(data=="")
 						{
-							alert("UPLOAD SUCCESSFULLY");
+							alert("SUCCESSFULLY");
 							window.location.reload();
 						}
 				}

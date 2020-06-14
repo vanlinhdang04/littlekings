@@ -40,8 +40,10 @@ session_start();
 //USER//
 	if(isset($_POST['user']))
 	{
+		//cho $_POST['fullname'];
 		include_once("../ketnoi.php");
 		$name=$_POST['name'];
+		$address=$_POST['address'];
 		$phone=$_POST['phone'];
 		$email=$_POST['email'];
 		$error="";	
@@ -62,12 +64,15 @@ session_start();
 			echo($error);
 			return false;
 		}
-		$sql=mysqli_query($connect,"UPDATE `users` SET `Name`='$name',`Phone`='$phone',`Email`='$email' WHERE Userid='$userid'");
+		mysqli_query($connect,"UPDATE `users` SET `Name`='$name',`Phone`='$phone',`Email`='$email',`Address`='$address' WHERE Userid='$userid'") or die("Loi sua thong tin ca nhan");
 		
-		$_SESSION['nameLogin']=$firstname." ".$lastname;
+		$_SESSION['nameLogin']=$name;
+		$_SESSION['fullname']=$name;
 		$_SESSION['email']=$email;
 		$_SESSION['phone']=$phone;
+		$_SESSION['address']=$address;
 		
 		mysqli_close($connect);
+		echo 0;
 	}
 ?>

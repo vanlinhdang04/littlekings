@@ -2,6 +2,7 @@ $(document).ready(function(){
 	"use strict";
 	function editcart(id,amount){
 		//var id=info.split("-");
+		//alert("a");
 		$.ajax({
 			type:"post",
 			url:"editcart.php",

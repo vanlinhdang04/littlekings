@@ -103,7 +103,6 @@ session_start();
               
             </li>
             <li><a href="shop.php">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
             
             <li><a href="contact.php">Contact</a></li>
           </ul>
@@ -125,9 +124,8 @@ session_start();
           <div class="col-md-6">
             <div class="block-16">
               <figure>
-                <img src="images/blog_1.jpg" alt="Image placeholder" class="img-fluid rounded">
-                <a href="https://vimeo.com/channels/staffpicks/93951774" class="play-button popup-vimeo"><span class="ion-md-play"></span></a>
-
+                <img src="images/howwestart.jpg" alt="Image placeholder" class="img-fluid rounded">
+                
               </figure>
             </div>
           </div>
@@ -138,8 +136,8 @@ session_start();
             <div class="site-section-heading pt-3 mb-4">
               <h2 class="text-black">How We Started</h2>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius repellat, dicta at laboriosam, nemo exercitationem itaque eveniet architecto cumque, deleniti commodi molestias repellendus quos sequi hic fugiat asperiores illum. Atque, in, fuga excepturi corrupti error corporis aliquam unde nostrum quas.</p>
-            <p>Accusantium dolor ratione maiores est deleniti nihil? Dignissimos est, sunt nulla illum autem in, quibusdam cumque recusandae, laudantium minima repellendus.</p>
+            <p>We are college friends who share the same interest in leather. To satisfy our love, we created the Little Kings leather goods brand together. If you are also passionate about us, go to the shop and enjoy the leather space of Little Kings.</p>
+            <p>Our shop will always bring you the best products with the best deals and warranties for you. Let's start shopping.</p>
             
           </div>
         </div>
@@ -159,12 +157,12 @@ session_start();
             <div class="block-38 text-center">
               <div class="block-38-img">
                 <div class="block-38-header">
-                  <img src="images/person_1.jpg" alt="Image placeholder" class="mb-4">
+                  <img src="images/vanlinh.jpg" alt="Image placeholder" class="mb-4">
                   <h3 class="block-38-heading h4">Van Linh</h3>
                   <p class="block-38-subheading">CEO/Co-Founder</p>
                 </div>
                 <div class="block-38-body">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                  <p>Pioneers came up with the idea of establishing and developing Little Kings.</p>
                 </div>
               </div>
             </div>
@@ -173,12 +171,12 @@ session_start();
             <div class="block-38 text-center">
               <div class="block-38-img">
                 <div class="block-38-header">
-                  <img src="images/person_2.jpg" alt="Image placeholder" class="mb-4">
+                  <img src="images/chilinh.jpg" alt="Image placeholder" class="mb-4">
                   <h3 class="block-38-heading h4">Chi Linh</h3>
                   <p class="block-38-subheading">Co-Founder</p>
                 </div>
                 <div class="block-38-body">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                  <p>The person in charge of the shop's operating processes.</p>
                 </div>
               </div>
             </div>
@@ -187,12 +185,12 @@ session_start();
             <div class="block-38 text-center">
               <div class="block-38-img">
                 <div class="block-38-header">
-                  <img src="images/person_3.jpg" alt="Image placeholder" class="mb-4">
+                  <img src="images/minhduc.jpg" alt="Image placeholder" class="mb-4">
                   <h3 class="block-38-heading h4">Minh Duc</h3>
                   <p class="block-38-subheading">Marketing</p>
                 </div>
                 <div class="block-38-body">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                  <p>Introducing Little Kings introduces many people to the shop.</p>
                 </div>
               </div>
             </div>
@@ -201,12 +199,12 @@ session_start();
             <div class="block-38 text-center">
               <div class="block-38-img">
                 <div class="block-38-header">
-                  <img src="images/person_4.jpg" alt="Image placeholder" class="mb-4">
-                  <h3 class="block-38-heading h4">Tien Thinhx`</h3>
-                  <p class="block-38-subheading">Sales Manager</p>
+                  <img src="images/tienthinh.jpg" alt="Image placeholder" class="mb-4">
+                  <h3 class="block-38-heading h4">Tien Thinh</h3>
+                  <p class="block-38-subheading">Manager</p>
                 </div>
                 <div class="block-38-body">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                  <p>The manager of many aspects of the shop such as customer statistics and products.</p>
                 </div>
               </div>
             </div>

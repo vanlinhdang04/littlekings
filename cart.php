@@ -24,6 +24,24 @@
 	<link rel="stylesheet" href="css/Form.css">
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/dangnhap_dangky.js"></script>
+  <script type="text/javascript">
+    // $(document).on("click","#minuss",function(){
+    //       var max=parseInt($('.sl').attr('max'));
+    //       var sl=parseInt($(".sl").val());
+          
+    //       if(sl>1 ){
+    //         $(".sl").val(sl-1);   
+    //       }
+    //     });
+    //     $(document).on("click","#pluss",function(){
+    //         var max=parseInt($('.sl').attr('max'));
+    //         var sl=parseInt($(".sl").val());
+    //         //var plus=parseInt($(".sl").val());
+    //         if(sl<max){
+    //           $(".sl").val(sl+1);
+    //         }
+    //       });
+  </script>
   </head>
   <body>
 	<?php
@@ -100,8 +118,7 @@
               <a href="about.php">About</a>
               
             </li>
-            <li><a href="shop.php">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
+            <li><a href="shop.php">Shop</a></li>            
             
             <li><a href="contact.php">Contact</a></li>
           </ul>
@@ -211,11 +228,11 @@
 							$str.='<td>';
 							$str.='<div class="input-group mb-3" style="max-width: 120px;">';
 							$str.='<div class="input-group-prepend">';
-							$str.='<button class="btn btn-outline-primary js-btn-minus minuss" type="button" name="'.$k.'">&minus;</button>';
+							$str.='<button class="btn btn-outline-primary js-btn-minus minuss" id="minuss" type="button" name="'.$k.'">&minus;</button>';
 							$str.='</div>';
-							$str.='<input type="text" class="form-control text-center" value="'.$v.'" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="'.$k.'">';
+							$str.='<input type="text" class="form-control text-center sl" value="'.$v.'" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="'.$k.'" max='.$row["Amount"].' readonly>';
 							$str.='<div class="input-group-append">';
-							$str.='<button class="btn btn-outline-primary js-btn-plus pluss" type="button" name="'.$k.'">&plus;</button>';
+							$str.='<button class="btn btn-outline-primary js-btn-plus pluss" id="pluss" type="button" name="'.$k.'">&plus;</button>';
 							$str.='</div>';
 							$str.='</div>';
 
@@ -335,7 +352,7 @@
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Contact Info</h3>
               <ul class="list-unstyled">
-                <li class="address">273 An Duong Vuong street, District 5, Ho Chi Minh city</li>
+                <li class="address">274 An Duong Vuong street, District 5, Ho Chi Minh city</li>
                 <li class="phone"><a href="#">039 548 2136</a></li>
                 <li class="email">littleKings@gmail.com</li>
               </ul>

@@ -148,7 +148,6 @@ if(isset($_SESSION['userid'])){
               
             </li>
             <li><a href="shop.php">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
             
             <li><a href="contact.php">Contact</a></li>
           </ul>
@@ -414,7 +413,7 @@ if(isset($_SESSION['userid'])){
                     </tbody>
                   </table>
 
-                  <div class="border p-3 mb-3">
+                  <!-- <div class="border p-3 mb-3">
                     <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
 
                     <div class="collapse" id="collapsebank">
@@ -442,7 +441,7 @@ if(isset($_SESSION['userid'])){
                         <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg py-3 btn-block">Place Order</button>

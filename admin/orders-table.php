@@ -14,7 +14,6 @@ if(isset($_POST['oi_orderid']) && isset($_POST['oi_status'])){
 	include_once('../ketnoi.php');
 	$sql="UPDATE `orders` SET `Status`='".$_POST['oi_status']."' WHERE OrderID='".$_POST['oi_orderid']."'";
 	mysqli_query($connect,$sql);
-	
 }
 ?>
 <!DOCTYPE html>
@@ -234,7 +233,9 @@ if(isset($_POST['oi_orderid']) && isset($_POST['oi_status'])){
 							<li class="active">
                                 <a href="orders-table.php">Orders Table</a>
                             </li>
-                            
+                            <li>
+                                <a href="contact-table.php">Contacts Table</a>
+                            </li>
                         </ul>
                     </li>
                     <li>

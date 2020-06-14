@@ -141,7 +141,7 @@
                                 <a href="orders-table.php">Orders Table</a>
                             </li>
                             <li>
-                                <a href="pages/tables/jquery-datatable.html">Order statistics</a>
+                                <a href="contact-table.php">Contacts Table</a>
                             </li>
                         </ul>
                     </li>

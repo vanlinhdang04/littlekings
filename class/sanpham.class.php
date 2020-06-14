@@ -36,7 +36,7 @@ class SanPham{
 			
 			$this->result_query=mysqli_query($this->connect,$sql)
 			or
-				die('khong tim thay');
+				die($sql);
 			
 		}
 		return($this->result_query);

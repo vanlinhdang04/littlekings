@@ -5,7 +5,7 @@ if($_SESSION['role']!=2 && $_SESSION['role']!=1 ){
 }
 
 include_once('../ketnoi.php');
-$rs=mysqli_query($connect,"SELECT * FROM users WHERE Status=1 and role=3");
+$rs=mysqli_query($connect,"SELECT * FROM users WHERE Status=1 and Roleid=3");
 $totaluser=mysqli_num_rows($rs);
 $rs=mysqli_query($connect,"SELECT * FROM products WHERE Status=1");
 $totalproduct=mysqli_num_rows($rs);
@@ -141,7 +141,9 @@ $totaladmin=mysqli_num_rows($rs);
                             <li>
                                 <a href="orders-table.php">Orders Table</a>
                             </li>
-                            
+                            <li>
+                                <a href="contact-table.php">Contacts Table</a>
+                            </li>
                         </ul>
                     </li>
 
@@ -346,8 +348,10 @@ $totaladmin=mysqli_num_rows($rs);
                             <i class="material-icons">face</i>
                         </div>
                         <div class="content">
-                            <div class="text">MEMBERS</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $totaluser; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <a href="usertable.php">
+                                <div class="text">MEMBERS</div>
+                                <div class="number count-to" data-from="0" data-to="<?php echo $totaluser; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -356,10 +360,12 @@ $totaladmin=mysqli_num_rows($rs);
                         <div class="icon">
                             <i class="material-icons">shopping_cart</i>
                         </div>
+                        <a href="orders-table.php">
                         <div class="content">
                             <div class="text">ORDERS</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo $totalorder; ?>" data-speed="1000" data-fresh-interval="20">125</div>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -367,10 +373,12 @@ $totaladmin=mysqli_num_rows($rs);
                         <div class="icon">
                             <i class="material-icons">products</i>
                         </div>
-                        <div class="content">
-                            <div class="text">PRODUCTS</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $totalproduct;  ?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
+                        <a href="product-table.php">
+                            <div class="content">
+                                <div class="text">PRODUCTS</div>
+                                <div class="number count-to" data-from="0" data-to="<?php echo $totalproduct;  ?>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -378,13 +386,16 @@ $totaladmin=mysqli_num_rows($rs);
                         <div class="icon">
                             <i class="material-icons">person_add</i>
                         </div>
-                        <div class="content">
-                            <div class="text">Adminators</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $totaladmin; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
+                        <a href="usertable.php">
+                            <div class="content">
+                                <div class="text">Adminators</div>
+                                <div class="number count-to" data-from="0" data-to="<?php echo $totaladmin; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
+
             <!-- #END# Widgets -->
             <!-- CPU Usage -->
             <!-- <div class="row clearfix">

@@ -118,7 +118,7 @@ session_start();
               
             </li>
             <li><a href="shop.php">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
+            
             
             <li class="active"><a href="contact.php">Contact</a></li>
           </ul>

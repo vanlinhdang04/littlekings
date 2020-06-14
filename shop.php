@@ -170,7 +170,6 @@ session_start();
               
             </li>
             <li class="active"><a href="shop.php">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
             
             <li><a href="contact.php">Contact</a></li>
           </ul>
@@ -231,7 +230,7 @@ session_start();
 				</label>
 				  <?php
 	include_once('ketnoi.php');
-						  $result=mysqli_query($connect,"SELECT * FROM catalog");
+						  $result=mysqli_query($connect,"SELECT * FROM catalog ORDER BY `catalog`.`CatalogID` DESC");
 						  $str="";
 						  while($row=mysqli_fetch_assoc($result)){
 							  $str.='<label for="'.strtolower($row['CatalogName']).'-cate" class="d-flex">
@@ -278,53 +277,7 @@ session_start();
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="site-section site-blocks-2">
-                <div class="row justify-content-center text-center mb-5">
-                  <div class="col-md-7 site-section-heading pt-4">
-                    <h2>Categories</h2>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-                    <a class="block-2-item" href="#">
-                      <figure class="image">
-                        <img src="images/women.jpg" alt="" class="img-fluid">
-                      </figure>
-                      <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Women</h3>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-                    <a class="block-2-item" href="#">
-                      <figure class="image">
-                        <img src="images/children.jpg" alt="" class="img-fluid">
-                      </figure>
-                      <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Children</h3>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-                    <a class="block-2-item" href="#">
-                      <figure class="image">
-                        <img src="images/men.jpg" alt="" class="img-fluid">
-                      </figure>
-                      <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Men</h3>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              
-            </div>
-          </div>
-        </div>
+        
         
       </div>
     </div>
