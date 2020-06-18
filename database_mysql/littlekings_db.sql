@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 14, 2020 lúc 08:46 PM
+-- Thời gian đã tạo: Th6 18, 2020 lúc 03:29 PM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.3.2
 
@@ -87,7 +87,8 @@ CREATE TABLE `email_notification` (
 INSERT INTO `email_notification` (`ID`, `Email`, `Status`, `Created`) VALUES
 (1, 'linhlinh@gmail.com', 1, '2020-06-13'),
 (2, 'vanvan@gmail.com', 1, '2020-06-13'),
-(3, 'nhok2k2@gmail.com', 1, '2020-06-13');
+(3, 'nhok2k2@gmail.com', 1, '2020-06-13'),
+(4, 'long@gmail.com', 1, '2020-06-15');
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,10 @@ CREATE TABLE `orderdetail` (
 --
 
 INSERT INTO `orderdetail` (`OrderID`, `ProductID`, `Price`, `Amount`, `Total`) VALUES
-('OD_01', '17', '115', '1', '115');
+('OD_01', '17', '115', '1', '115'),
+('OD_02', '18', '50', '1', '50'),
+('OD_03', '18', '50', '1', '50'),
+('OD_04', '18', '50', '1', '50');
 
 -- --------------------------------------------------------
 
@@ -136,7 +140,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`OrderID`, `UserID`, `Name`, `City`, `CompanyName`, `Address`, `Email`, `Phone`, `Notes`, `Total`, `Status`, `Created`) VALUES
-('OD_01', '', 'Van Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'vanlinhdang1999@gmail.com', '0395482136', 'mua lan dau', '115', '1', '2020-06-15');
+('OD_01', '', 'Van Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'vanlinhdang1999@gmail.com', '0395482136', 'mua lan dau', '115', '2', '2020-06-15'),
+('OD_02', '', 'Van Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'vanlinhdang1999@gmail.com', '0395482136', '', '50', '1', '2020-06-15'),
+('OD_03', 'UR03', 'Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'van@gmail.com', '0395482130', '', '50', '3', '2020-06-15'),
+('OD_04', 'UR03', 'Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'van@gmail.com', '0395482130', '', '50', '2', '2020-06-15');
 
 -- --------------------------------------------------------
 
@@ -166,7 +173,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ID`, `Name`, `CatalogID`, `Color`, `Price`, `Amount`, `AmountBuy`, `Image`, `ImageList`, `Discount`, `Description`, `Status`, `Created`, `UpdateDay`) VALUES
-(1, 'V1- Buck Brown', 'WL', 'BuckBrown', '65', 29, 0, 'V1BuckBrown.jpg', 'V1BuckBrown_01.jpg', NULL, 'The V1 is a minimalist wallet made with the finest of Wickett and Craig leathers. Handcrafted to fit your minimalist lifestyle and made to last.\r\n</br>\r\nFeatures:</br>  \r\n- Option of Machine Stitched or Hand Stitched with Japanese thread.</br>\r\n- Hand finished dyed edges</br>\r\n- Fair trade made </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills </br>', 1, '2020-05-26', '2020-05-26'),
+(1, 'V1- Buck Brown', 'WL', 'BuckBrown', '65', 0, 0, 'V1BuckBrown.jpg', 'V1BuckBrown_01.jpg', NULL, 'The V1 is a minimalist wallet made with the finest of Wickett and Craig leathers. Handcrafted to fit your minimalist lifestyle and made to last.\r\n</br>\r\nFeatures:</br>  \r\n- Option of Machine Stitched or Hand Stitched with Japanese thread.</br>\r\n- Hand finished dyed edges</br>\r\n- Fair trade made </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills </br>', 1, '2020-05-26', '2020-05-26'),
 (2, 'V1 - Buck Brown & Olive', 'WL', 'BuckBrown Olive', '65', 30, 0, 'V1BuckBrownOlive.jpg', 'V1BuckBrownOlive_01.jpg', NULL, 'The V1 is a minimalist wallet made with the finest of Wickett and Craig leathers. Handcrafted to fit your minimalist lifestyle and made to last.\r\n</br>\r\nFeatures:</br>  \r\n- Option of Machine Stitched or Hand Stitched with Japanese thread.</br>\r\n- Hand finished dyed edges</br>\r\n- Fair trade made </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills </br>', 1, '2020-05-26', '2020-05-26'),
 (3, 'V1 - Black', 'WL', 'Black', '65', 30, 0, 'V1Black.jpg', 'V1Black_01.jpg', NULL, 'The V1 is a minimalist wallet made with the finest of Wickett and Craig leathers. Handcrafted to fit your minimalist lifestyle and made to last.\r\n</br>\r\nFeatures:</br>  \r\n- Option of Machine Stitched or Hand Stitched with Japanese thread.</br>\r\n- Hand finished dyed edges</br>\r\n- Fair trade made </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills </br>', 1, '2020-05-26', '2020-05-26'),
 (4, 'The V2 - Rugged Tan', 'WL', 'RuggedTan', '125', 30, 0, 'V2RuggedTan.jpg', 'V2RuggedTan_01.jpg,,V2RuggedTan_02.jpg,,V2RuggedTan_03.jpg', NULL, 'The V2 wallet is perfect for anyone who has a busy on-the-go lifestyle. It holds multiple cards and bills while still maintaining that minimalist wallet feel. It features 3 interior card slots, 1 folded cash slot, and 2 exterior card slots.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- Option for Machine Stitched or Hand Stitched</br>\r\n- Hand burnished edges </br>\r\n- Fair trade made </br>\r\n- 3 interior card slots which hold 2-3 cards each </br>\r\n- 2 exterior card slots which hold 1-2 cards </br>\r\n- 1 interior folded bill slot</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
@@ -183,8 +190,8 @@ INSERT INTO `products` (`ID`, `Name`, `CatalogID`, `Color`, `Price`, `Amount`, `
 (15, 'The Market Tote - Olive & Rugged Tan', 'BG', 'RuggedTan', '289', 27, 0, 'MarketToteOliveRuggedTan.jpg', 'MarketToteRosewood.jpg', NULL, 'The Mountain Tote is a rugged thing of beauty which will last you forever! Made from pull up leather it has a unique look when the leather is folded or bent. It is fully handcrafted right from the first cut. It features an inside pocket and a key chain hook so you don\'t loose your keys at the bottom. It\'s perfect for anyone who needs all of her things at their finger tips. It measures 18\" wide, 14\" tall, and 5\" deep at the base.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- 18\" wide x 14\" height x 5\" depth at base </br>\r\n- Two tone full grain veg tanned leather </br>\r\n- Interior pocket </br>\r\n- Fair trade made </br>\r\n- Hand Hammered Copper hardware </br>\r\n- Interior key chain hook </br>', 1, '2020-05-26', '2020-05-26'),
 (16, 'Limited Edition Uncharted Satchel - English Tan', 'BG', 'BuckBrown', '899', 29, 0, 'UnchartedSatchel.jpg', 'UnchartedSatchel.jpg', NULL, 'The Uncharted Satchel is a rugged thing of beauty which will last you forever! Made from pull up leather it has a unique look when the leather is folded or bent. It is fully handcrafted right from the first cut. It features an inside laptop sleeve which fits a 15\" MacBook Air and pocket for your items.\r\n</br>\r\n** If you are local and wish to pick up your order, please type in \"PICKUP\" in the discount code dialogue box when checking out.\r\n</br>\r\nFeatures:</br> \r\n- 100% handcrafted </br> \r\n- 16\" wide x 10\" height x 5\" depth at base </br>\r\n- Full grain leather </br>\r\n- Interior pocket with pen loop and sleeve </br>\r\n- Adjustable Tuck locks for quick access to interior of bag </br>\r\n- Adjustable shoulder strap </br>\r\n- Pass Through Strap on back to use with rollable luggage </br>\r\n- Fair trade made </br>\r\n- Antique brass hardware </br>\r\n- Hand hammered copper rivets </br>\r\n- Hand Stitched Gussets for maximum strength and durability </br>', 1, '2020-05-26', '2020-05-26'),
 (17, 'LKG Belt - Medium Brown English Bridle', 'BL', 'Buck Brown', '115', 19, 1, 'BeltMediumBrownEnglishBridle.jpg', 'BeltMediumBrownEnglishBridle_01.jpg,,BeltMediumBrownEnglishBridle_02.jpg,,BeltMediumBrownEnglishBridle_03.jpg', NULL, 'Made from the finest of leathers, the LKG belt will last you many years. It features an antique nickel rolling belt buckle which makes threading the belt very easy and smooth. It also features hand hammered copper rivets which are extremely durable. It measures 1.5\" wide and comes in any custom length. Please select the correct belt length in the drop down menu. Look at the chart below to see the correct way to measure your belt so that we can make it perfectly fit your waistline.', 1, '2020-06-14', '2020-06-14'),
-(18, 'LKG Key Chain - Rugged Tan', 'BL', 'RuggedTan', '50', 30, 0, 'KeyChainRuggedTan.jpg', 'KeyChainRuggedTan_01.jpg', 0, 'The LKG Key Chain is crafted from premium full grain leather and will age beautifully. It is fitted with a top quality antique brass key hook and key ring which provides superior strength and durability.\r\n<br/>\r\n\r\n** If you are local and wish to pick up your order, please type in \"PICKUP\" in the discount code dialogue box when checking out.', 1, '2020-06-14', '2020-06-14'),
-(19, 'LKG Key Chain - Stealth Black', 'BL', 'Black', '50', 20, 0, 'KeyChainStealthBlack.jpg', 'KeyChainStealthBlack_01.jpg', NULL, 'The LKG Key Chain is crafted from premium full grain leather and will age beautifully. It is fitted with a top quality antique brass key hook and key ring which provides superior strength and durability.', 1, '2020-06-14', '2020-06-14');
+(18, 'LKG Key Chain - Rugged Tan', 'BL', 'RuggedTan', '50', 27, 3, 'KeyChainRuggedTan.jpg', 'KeyChainRuggedTan_01.jpg', 0, 'The LKG Key Chain is crafted from premium full grain leather and will age beautifully. It is fitted with a top quality antique brass key hook and key ring which provides superior strength and durability.\r\n<br/>\r\n\r\n** If you are local and wish to pick up your order, please type in \"PICKUP\" in the discount code dialogue box when checking out.', 1, '2020-06-14', '2020-06-14'),
+(19, 'LKG Key Chain - Stealth Black', 'BL', 'Black', '50', 0, 0, 'KeyChainStealthBlack.jpg', 'KeyChainStealthBlack_01.jpg', NULL, 'The LKG Key Chain is crafted from premium full grain leather and will age beautifully. It is fitted with a top quality antique brass key hook and key ring which provides superior strength and durability.', 1, '2020-06-14', '2020-06-14');
 
 -- --------------------------------------------------------
 
@@ -231,10 +238,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`Userid`, `Username`, `Password`, `Name`, `Phone`, `Email`, `Address`, `Roleid`, `Create`, `Status`) VALUES
 ('UR01', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'Đặng Văn Linh', '0395482136', 'vanlinhdang1999@gmail.com', '', 1, '2020-06-10', 1),
-('UR02', 'manager', 'e10adc3949ba59abbe56e057f20f883e', 'van', '0395482135', 'vanlinh@gmail.com', '', 2, '2020-06-10', 1),
-('UR03', 'user', 'c56d0e9a7ccec67b4ea131655038d604', 'Linh', '0395482134', 'van@gmail.com', '', 3, '2020-06-10', 1),
-('UR04', 'user11', 'e10adc3949ba59abbe56e057f20f883e', '', '0369258147', 'ava@gmail.com', '', 3, '2020-06-13', 1),
-('UR05', 'nam', 'e10adc3949ba59abbe56e057f20f883e', 'Hoang', '0357159275', 'nam@gmail.com', '', 3, '2020-06-13', 1);
+('UR02', 'manager', 'e10adc3949ba59abbe56e057f20f883e', 'van', '0395482135', 'vanlinh@gmail.com', '273 An Dương Vương, Q.5', 2, '2020-06-10', 1),
+('UR03', 'user', 'e10adc3949ba59abbe56e057f20f883e', 'Linh', '0395482130', 'van@gmail.com', '', 3, '2020-06-10', 1),
+('UR04', 'user11', 'e10adc3949ba59abbe56e057f20f883e', 'avc', '0369258100', 'ava@gmail.com', '', 3, '2020-06-13', 0),
+('UR05', 'nam', 'e10adc3949ba59abbe56e057f20f883e', 'Hoang', '0357159275', 'nam@gmail.com', '273 An Dương Vương, Q.5', 3, '2020-06-13', 1),
+('UR06', 'user2', 'e10adc3949ba59abbe56e057f20f883e', 'avc', '0369258101', 'avaaa@gmail.com', '', 3, '2020-06-15', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -303,13 +311,13 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT cho bảng `email_notification`
 --
 ALTER TABLE `email_notification`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `role`

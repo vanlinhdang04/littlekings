@@ -144,6 +144,7 @@ else{
 					 email:$("#ui_email").val(),role:$("#ui_role").val(),create:$("#ui_create").val(),
 					 status:$("#ui_status").val()},
 				success:function(data){
+                    //alert(data);
 					if(data.indexOf("1")!=-1)
 						{
 							alert("Phone already exists");

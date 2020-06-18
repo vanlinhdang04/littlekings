@@ -17,7 +17,7 @@ if(isset($_POST['logout']) && $_POST['logout']==1){
 	unset($_SESSION['cart']);
 	return(false);
 }
-$result=mysqli_query($connect,"SELECT * FROM users WHERE Username='$tk' AND Password='$mk'");
+$result=mysqli_query($connect,"SELECT * FROM users WHERE Username='$tk' AND Password='$mk' AND Status=1");
 if(mysqli_num_rows($result)==1){
 	$_SESSION['isLogin']=1;
 	$row=mysqli_fetch_assoc($result);

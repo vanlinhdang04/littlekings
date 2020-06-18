@@ -51,7 +51,12 @@ class ShopSingle extends SanPham{
 			$str.='</div>';
 			$str.='<div>Amount available : '.$row["Amount"].'</div>';
 			$str.='</div>';
-			$str.='<p id="addCart" title="'.$row["ID"].'"><a class="buy-now btn btn-sm btn-primary" style="color:white">Add To Cart</a></p>';
+			if($row['Amount']==0){
+				$str.='<p><a class="buy-now btn btn-sm btn-default" style="color:black" disable>Sold out</a></p>';
+			}else{
+				$str.='<p id="addCart" title="'.$row["ID"].'"><a class="buy-now btn btn-sm btn-primary" style="color:white">Add To Cart</a></p>';
+			}
+			
 			$str.='</div>';
 		};
 		return($str);

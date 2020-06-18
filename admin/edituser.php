@@ -31,10 +31,10 @@ session_start();
 			echo($error);
 			return false;
 		}
-		$sql=mysqli_query($connect,"UPDATE `users` SET `Password`='$password',`Name`='$name',`Phone`='$phone',`Email`='$email',`Roleid`='$role',`Status`='$status' WHERE Userid='$userid'");
+		$sql=mysqli_query($connect,"UPDATE `users` SET `Name`='$name',`Phone`='$phone',`Email`='$email',`Roleid`='$role',`Status`='$status' WHERE Userid='$userid'");
 		
 		
-		
+		//echo $sql;
 		mysqli_close($connect);
 	}
 //USER//
