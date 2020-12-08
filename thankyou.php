@@ -104,6 +104,7 @@ session_start();
             <li><a href="shop.php">Shop</a></li>            
             
             <li><a href="contact.php">Contact</a></li>
+            <li><a href="myorder.php">My order</a></li>
           </ul>
         </div>
       </nav>

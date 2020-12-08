@@ -44,7 +44,7 @@
 				type:"post",
 				data:{username:$("#dn_username").val(),password:$("#dn_password").val()},
 				success:function(data){
-					//alert(data);
+					alert(data);
 					if(data==0){	
 						$(".error-1").html("Username or password Invalid. Please try again.");
 						$(".error-1").fadeIn(300);
@@ -319,6 +319,7 @@
             <!-- <li><a href="#">Catalogue</a></li> -->
             
             <li><a href="contact.php">Contact</a></li>
+			<li><a href="myorder.php">My order</a></li>
           </ul>
         </div>
       </nav>

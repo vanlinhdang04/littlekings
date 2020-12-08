@@ -767,3 +767,6 @@ label input{
   display: -webkit-box !important;
   display: -ms-flexbox;
 }
+.myorder_title {
+  text-align: center;
+}

@@ -7,7 +7,4 @@
 			or
 			die("khong the ket noi database");
 		mysqli_set_charset($connect,"utf8")or die("loi");
-			
-		
-	
 	?>

@@ -172,6 +172,7 @@ session_start();
             <li class="active"><a href="shop.php">Shop</a></li>
             
             <li><a href="contact.php">Contact</a></li>
+            <li><a href="myorder.php">My order</a></li>
           </ul>
         </div>
       </nav>
@@ -229,7 +230,7 @@ session_start();
 				  <input type="checkbox" id="all-cate" class="mr-2 mr-0 fix"  name="category[]" value="" ><span>ALL</span> <span class="text-black ml-auto"></span>
 				</label>
 				  <?php
-	include_once('ketnoi.php');
+	           include_once('ketnoi.php');
 						  $result=mysqli_query($connect,"SELECT * FROM catalog ORDER BY `catalog`.`CatalogID` DESC");
 						  $str="";
 						  while($row=mysqli_fetch_assoc($result)){
@@ -238,7 +239,7 @@ session_start();
 				</label>';
 						  }
 						  echo $str;
-	?>
+	        ?>
 				
             </div>
 

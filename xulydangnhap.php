@@ -18,6 +18,7 @@ if(isset($_POST['logout']) && $_POST['logout']==1){
 	return(false);
 }
 $result=mysqli_query($connect,"SELECT * FROM users WHERE Username='$tk' AND Password='$mk' AND Status=1");
+//$result=mysqli_query($connect,"call signin($tk,$mk,$error)");
 if(mysqli_num_rows($result)==1){
 	$_SESSION['isLogin']=1;
 	$row=mysqli_fetch_assoc($result);
@@ -29,7 +30,6 @@ if(mysqli_num_rows($result)==1){
 	$_SESSION['phone']=$row["Phone"];
 	$_SESSION['userid']=$row["Userid"];
 	$_SESSION['address']=$row["Address"];
-	
 	echo $row["Roleid"];
 }else{
 	echo 0;

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 18, 2020 lúc 03:29 PM
--- Phiên bản máy phục vụ: 10.1.38-MariaDB
--- Phiên bản PHP: 7.3.2
+-- Thời gian đã tạo: Th12 08, 2020 lúc 04:24 PM
+-- Phiên bản máy phục vụ: 10.4.14-MariaDB
+-- Phiên bản PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,6 +20,44 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `littlekings_db`
 --
+
+DELIMITER $$
+--
+-- Thủ tục
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `myorder` (IN `id` VARCHAR(10))  NO SQL
+SELECT *, orders.Created as 'Date', orderdetail.Amount as 'Amounts',orders.Status as 'stt'
+FROM orders, orderdetail, products
+WHERE orders.OrderID = orderdetail.OrderID
+AND orderdetail.ProductID = products.ID
+AND UserID = id
+ORDER BY orders.Created DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `signin` (IN `user` VARCHAR(50) CHARSET ascii, IN `pass` VARCHAR(50) CHARSET ascii, OUT `error` INT(10))  BEGIN
+	DECLARE flag INT(10) DEFAULT 0;
+    SELECT COUNT(*) INTO flag
+    FROM users
+    WHERE Username = user
+    AND Password = pass
+    AND Status = 1;
+    SET error = flag;
+    if (flag=1)
+    THEN
+    	SELECT *
+        FROM users
+        WHERE Username = user
+        AND Password = pass
+        AND Status = 1;
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `test` (IN `user` VARCHAR(50), IN `pass` VARCHAR(50))  NO SQL
+SELECT *
+FROM users
+WHERE Username = user
+AND Password = pass$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -98,7 +135,7 @@ INSERT INTO `email_notification` (`ID`, `Email`, `Status`, `Created`) VALUES
 
 CREATE TABLE `orderdetail` (
   `OrderID` varchar(50) COLLATE utf8_bin NOT NULL,
-  `ProductID` varchar(255) COLLATE utf8_bin NOT NULL,
+  `ProductID` int(20) NOT NULL,
   `Price` varchar(255) COLLATE utf8_bin NOT NULL,
   `Amount` varchar(100) COLLATE utf8_bin NOT NULL,
   `Total` varchar(255) COLLATE utf8_bin NOT NULL
@@ -109,10 +146,15 @@ CREATE TABLE `orderdetail` (
 --
 
 INSERT INTO `orderdetail` (`OrderID`, `ProductID`, `Price`, `Amount`, `Total`) VALUES
-('OD_01', '17', '115', '1', '115'),
-('OD_02', '18', '50', '1', '50'),
-('OD_03', '18', '50', '1', '50'),
-('OD_04', '18', '50', '1', '50');
+('OD_01', 18, '50', '1', '50'),
+('OD_01', 17, '115', '1', '115'),
+('OD_02', 16, '899', '1', '899'),
+('OD_03', 18, '50', '1', '50'),
+('OD_04', 18, '50', '1', '50'),
+('OD_04', 17, '115', '1', '115'),
+('OD_04', 8, '135', '1', '135'),
+('OD_05', 11, '125', '3', '375'),
+('OD_05', 8, '135', '1', '135');
 
 -- --------------------------------------------------------
 
@@ -140,10 +182,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`OrderID`, `UserID`, `Name`, `City`, `CompanyName`, `Address`, `Email`, `Phone`, `Notes`, `Total`, `Status`, `Created`) VALUES
-('OD_01', '', 'Van Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'vanlinhdang1999@gmail.com', '0395482136', 'mua lan dau', '115', '2', '2020-06-15'),
-('OD_02', '', 'Van Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'vanlinhdang1999@gmail.com', '0395482136', '', '50', '1', '2020-06-15'),
-('OD_03', 'UR03', 'Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'van@gmail.com', '0395482130', '', '50', '3', '2020-06-15'),
-('OD_04', 'UR03', 'Linh', 'Ho Chi Minh', 'đại học Sài Gòn', '273 An Dương Vương, Q.5', 'van@gmail.com', '0395482130', '', '50', '2', '2020-06-15');
+('OD_01', 'UR07', 'linh', 'Ho Chi Minh', '', '62 ly thuong kiet, hcm', 'vanlinhh@gmail.com', '0369258147', '', '165', '2', '2020-11-22'),
+('OD_02', 'UR07', 'linh', 'Ho Chi Minh', '', '62 ly thuong kiet, hcm', 'vanlinhh@gmail.com', '0369258147', '', '899', '2', '2020-11-22'),
+('OD_03', 'UR07', 'linh', 'Ho Chi Minh', '', '62 ly thuong kiet, hcm', 'vanlinhh@gmail.com', '0369258147', '', '50', '2', '2020-11-23'),
+('OD_04', 'UR07', 'linh', 'Ho Chi Minh', '', '62 ly thuong kiet, hcm', 'vanlinhh@gmail.com', '0369258147', '', '300', '2', '2020-12-08'),
+('OD_05', 'UR08', 'user01', 'Ho Chi Minh', '', '50 An Duong Vuong', 'user01@gmail.com', '0395821457', '', '510', '3', '2020-12-08');
 
 -- --------------------------------------------------------
 
@@ -154,7 +197,7 @@ INSERT INTO `orders` (`OrderID`, `UserID`, `Name`, `City`, `CompanyName`, `Addre
 CREATE TABLE `products` (
   `ID` int(20) NOT NULL,
   `Name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `CatalogID` varchar(255) COLLATE utf8_bin NOT NULL,
+  `CatalogID` varchar(10) COLLATE utf8_bin NOT NULL,
   `Color` varchar(255) COLLATE utf8_bin NOT NULL,
   `Price` varchar(255) COLLATE utf8_bin NOT NULL,
   `Amount` int(255) NOT NULL,
@@ -175,22 +218,22 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`ID`, `Name`, `CatalogID`, `Color`, `Price`, `Amount`, `AmountBuy`, `Image`, `ImageList`, `Discount`, `Description`, `Status`, `Created`, `UpdateDay`) VALUES
 (1, 'V1- Buck Brown', 'WL', 'BuckBrown', '65', 0, 0, 'V1BuckBrown.jpg', 'V1BuckBrown_01.jpg', NULL, 'The V1 is a minimalist wallet made with the finest of Wickett and Craig leathers. Handcrafted to fit your minimalist lifestyle and made to last.\r\n</br>\r\nFeatures:</br>  \r\n- Option of Machine Stitched or Hand Stitched with Japanese thread.</br>\r\n- Hand finished dyed edges</br>\r\n- Fair trade made </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills </br>', 1, '2020-05-26', '2020-05-26'),
 (2, 'V1 - Buck Brown & Olive', 'WL', 'BuckBrown Olive', '65', 30, 0, 'V1BuckBrownOlive.jpg', 'V1BuckBrownOlive_01.jpg', NULL, 'The V1 is a minimalist wallet made with the finest of Wickett and Craig leathers. Handcrafted to fit your minimalist lifestyle and made to last.\r\n</br>\r\nFeatures:</br>  \r\n- Option of Machine Stitched or Hand Stitched with Japanese thread.</br>\r\n- Hand finished dyed edges</br>\r\n- Fair trade made </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills </br>', 1, '2020-05-26', '2020-05-26'),
-(3, 'V1 - Black', 'WL', 'Black', '65', 30, 0, 'V1Black.jpg', 'V1Black_01.jpg', NULL, 'The V1 is a minimalist wallet made with the finest of Wickett and Craig leathers. Handcrafted to fit your minimalist lifestyle and made to last.\r\n</br>\r\nFeatures:</br>  \r\n- Option of Machine Stitched or Hand Stitched with Japanese thread.</br>\r\n- Hand finished dyed edges</br>\r\n- Fair trade made </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills </br>', 1, '2020-05-26', '2020-05-26'),
+(3, 'V1 - Black', 'WL', 'Black', '65', 29, 1, 'V1Black.jpg', 'V1Black_01.jpg', NULL, 'The V1 is a minimalist wallet made with the finest of Wickett and Craig leathers. Handcrafted to fit your minimalist lifestyle and made to last.\r\n</br>\r\nFeatures:</br>  \r\n- Option of Machine Stitched or Hand Stitched with Japanese thread.</br>\r\n- Hand finished dyed edges</br>\r\n- Fair trade made </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills </br>', 1, '2020-05-26', '2020-05-26'),
 (4, 'The V2 - Rugged Tan', 'WL', 'RuggedTan', '125', 30, 0, 'V2RuggedTan.jpg', 'V2RuggedTan_01.jpg,,V2RuggedTan_02.jpg,,V2RuggedTan_03.jpg', NULL, 'The V2 wallet is perfect for anyone who has a busy on-the-go lifestyle. It holds multiple cards and bills while still maintaining that minimalist wallet feel. It features 3 interior card slots, 1 folded cash slot, and 2 exterior card slots.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- Option for Machine Stitched or Hand Stitched</br>\r\n- Hand burnished edges </br>\r\n- Fair trade made </br>\r\n- 3 interior card slots which hold 2-3 cards each </br>\r\n- 2 exterior card slots which hold 1-2 cards </br>\r\n- 1 interior folded bill slot</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
 (5, 'The V2 - Black', 'WL', 'Black', '125', 30, 0, 'V2Black.jpg', 'V2Black_01.jpg,,V2Black_02.jpg,,V2Black_03.jpg', NULL, 'The V2 wallet is perfect for anyone who has a busy on-the-go lifestyle. It holds multiple cards and bills while still maintaining that minimalist wallet feel. It features 3 interior card slots, 1 folded cash slot, and 2 exterior card slots.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- Option for Machine Stitched or Hand Stitched</br>\r\n- Hand burnished edges </br>\r\n- Fair trade made </br>\r\n- 3 interior card slots which hold 2-3 cards each </br>\r\n- 2 exterior card slots which hold 1-2 cards </br>\r\n- 1 interior folded bill slot</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
 (6, 'The V2 - Olive & Buck Brown', 'WL', 'Olive BuckBrown', '125', 30, 0, 'V2OliveBuckBrown.jpg', 'V2OliveBuckBrown_01.jpg,,V2OliveBuckBrown_02.jpg,,V2OliveBuckBrown_03.jpg', NULL, 'The V2 wallet is perfect for anyone who has a busy on-the-go lifestyle. It holds multiple cards and bills while still maintaining that minimalist wallet feel. It features 3 interior card slots, 1 folded cash slot, and 2 exterior card slots.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- Option for Machine Stitched or Hand Stitched</br>\r\n- Hand burnished edges </br>\r\n- Fair trade made </br>\r\n- 3 interior card slots which hold 2-3 cards each </br>\r\n- 2 exterior card slots which hold 1-2 cards </br>\r\n- 1 interior folded bill slot</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
-(7, 'The Royal V3 - Rugged Tan', 'WL', 'RuggedTan', '135', 30, 0, 'V3RuggedTan.jpg', 'V3RuggedTan_01.jpg,,V3RuggedTan_02.jpg,,V3RuggedTan_03.jpg', NULL, 'The Royal V3 is a reverse bifold wallet for the minimalist. It is made from 100% full grain leather which has a gorgeous rich pull up. This wallet will last you many years and is handcrafted to ensure maximum quality and durability. \r\n</br>\r\nFeatures:</br> \r\n- 100% handcrafted </br>\r\n- Option of Machine Stitched or Hand Stitched </br>\r\n- Fair trade made </br>\r\n- 4 interior card slots which hold 2 cards each </br>\r\n- 1 exterior bill slots which holds multiple bills</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
-(8, 'The Royal V3 - Black', 'WL', 'Black', '135', 28, 0, 'V3Black.jpg', 'V3Black_01.jpg,,V3Black_02.jpg,,V3Black_03.jpg', NULL, 'The Royal V3 is a reverse bifold wallet for the minimalist. It is made from 100% full grain leather which has a gorgeous rich pull up. This wallet will last you many years and is handcrafted to ensure maximum quality and durability. \r\n</br>\r\nFeatures:</br> \r\n- 100% handcrafted </br>\r\n- Option of Machine Stitched or Hand Stitched </br>\r\n- Fair trade made </br>\r\n- 4 interior card slots which hold 2 cards each </br>\r\n- 1 exterior bill slots which holds multiple bills</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
+(7, 'The Royal V3 - Rugged Tan', 'WL', 'RuggedTan', '135', 29, 1, 'V3RuggedTan.jpg', 'V3RuggedTan_01.jpg,,V3RuggedTan_02.jpg,,V3RuggedTan_03.jpg', NULL, 'The Royal V3 is a reverse bifold wallet for the minimalist. It is made from 100% full grain leather which has a gorgeous rich pull up. This wallet will last you many years and is handcrafted to ensure maximum quality and durability. \r\n</br>\r\nFeatures:</br> \r\n- 100% handcrafted </br>\r\n- Option of Machine Stitched or Hand Stitched </br>\r\n- Fair trade made </br>\r\n- 4 interior card slots which hold 2 cards each </br>\r\n- 1 exterior bill slots which holds multiple bills</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
+(8, 'The Royal V3 - Black', 'WL', 'Black', '135', 26, 2, 'V3Black.jpg', 'V3Black_01.jpg,,V3Black_02.jpg,,V3Black_03.jpg', NULL, 'The Royal V3 is a reverse bifold wallet for the minimalist. It is made from 100% full grain leather which has a gorgeous rich pull up. This wallet will last you many years and is handcrafted to ensure maximum quality and durability. \r\n</br>\r\nFeatures:</br> \r\n- 100% handcrafted </br>\r\n- Option of Machine Stitched or Hand Stitched </br>\r\n- Fair trade made </br>\r\n- 4 interior card slots which hold 2 cards each </br>\r\n- 1 exterior bill slots which holds multiple bills</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
 (9, 'The Long Wallet - Olive & Buck Brown', 'WL', 'Olive BuckBrown', '205', 30, 0, 'LongWalletOliveBuckBrown.jpg', 'LongWalletOliveBuckBrown_01.jpg,,LongWalletOliveBuckBrown_02.jpg', NULL, 'The Long Wallet is a unisex leather wallet for the person who carries everything. Whether it’s cash, coins, cards, or receipts, the Long Wallet has got you covered. Made from the finest of vegetable tanned leathers and highest quality hardware, this wallet will age beautifully and only get better with time. Built for life.\r\n</br>\r\nFeatures:</br>\r\n\r\n- 100% handcrafted by a single craftsman </br>\r\n- Made with Wickett & Craig Veg-tanned </br>Harness Leather\r\n- Fairtrade made - Ethnically sourced materials </br>\r\n- 6 Card Pockets (holds 2-3 cards each) </br>\r\n- 3 Large bill/receipt pockets </br>\r\n- 1 Large zippered pocket for coins and other things </br>\r\n- Machine Stitched with bonded nylon thread </br>\r\n- Heavy Duty Brass 7” YKK zipper </br>', 1, '2020-05-26', '2020-05-26'),
 (10, 'The Long Waller - Rugged Tan', 'WL', 'RuggedTan', '195', 30, 0, 'LongWalletRuggedTan.jpg', 'LongWalletRuggedTan_01.jpg,,LongWalletRuggedTan_02.jpg,,LongWalletRuggedTan_03.jpg', NULL, 'The Long Wallet is a unisex leather wallet for the person who carries everything. Whether it’s cash, coins, cards, or receipts, the Long Wallet has got you covered. Made from the finest of vegetable tanned leathers and highest quality hardware, this wallet will age beautifully and only get better with time. Built for life.\r\n</br>\r\nFeatures:</br>\r\n\r\n- 100% handcrafted by a single craftsman </br>\r\n- Made with Wickett & Craig Veg-tanned </br>Harness Leather\r\n- Fairtrade made - Ethnically sourced materials </br>\r\n- 6 Card Pockets (holds 2-3 cards each) </br>\r\n- 3 Large bill/receipt pockets </br>\r\n- 1 Large zippered pocket for coins and other things </br>\r\n- Machine Stitched with bonded nylon thread </br>\r\n- Heavy Duty Brass 7” YKK zipper </br>', 1, '2020-05-26', '2020-05-26'),
-(11, 'The V2 - Buck Brown', 'WL', 'BuckBrown', '125', 30, 0, 'V2BuckBrown.jpg', 'V2BuckBrown_01.jpg,,V2BuckBrown_02.jpg,,V2BuckBrown_03.jpg', NULL, 'The V2 wallet is perfect for anyone who has a busy on-the-go lifestyle. It holds multiple cards and bills while still maintaining that minimalist wallet feel. It features 3 interior card slots, 1 folded cash slot, and 2 exterior card slots.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- Option for Machine Stitched or Hand Stitched</br>\r\n- Hand burnished edges </br>\r\n- Fair trade made </br>\r\n- 3 interior card slots which hold 2-3 cards each </br>\r\n- 2 exterior card slots which hold 1-2 cards </br>\r\n- 1 interior folded bill slot</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
+(11, 'The V2 - Buck Brown', 'WL', 'BuckBrown', '125', 27, 3, 'V2BuckBrown.jpg', 'V2BuckBrown_01.jpg,,V2BuckBrown_02.jpg,,V2BuckBrown_03.jpg', NULL, 'The V2 wallet is perfect for anyone who has a busy on-the-go lifestyle. It holds multiple cards and bills while still maintaining that minimalist wallet feel. It features 3 interior card slots, 1 folded cash slot, and 2 exterior card slots.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- Option for Machine Stitched or Hand Stitched</br>\r\n- Hand burnished edges </br>\r\n- Fair trade made </br>\r\n- 3 interior card slots which hold 2-3 cards each </br>\r\n- 2 exterior card slots which hold 1-2 cards </br>\r\n- 1 interior folded bill slot</br>\r\n- Dimensions when closed: 4.25 inches x 3.75 inches</br>', 1, '2020-05-26', '2020-05-26'),
 (12, 'Special Edition Royal V1 - Black & Gold', 'WL', 'Black Gold', '125', 29, 0, 'RoyalV1BlackGold.jpg', 'RoyalV1BlackGold_01.jpg,,RoyalV1BlackGold_02.jpg', NULL, 'The Special Edition ROYAL V1 is hand-stitched and handcrafted from the finest of full grain leathers and embossed with Rose Gold foil with our LKG Swing Tag logo. Only 15 of these will be made, so when they are gone - they are gone!\r\n</br>\r\nJoin the Kingdom.</br>\r\n\r\nFeatures:</br>\r\n- Only 15 wallets will be crafted </br>\r\n- Embossed Swing Tag logo is Rose Gold Foil on front and back </br>\r\n- Individual serial numbers (01-15) embossed in Rose Gold Foil on the inside pocket </br>\r\n- Hand stitched with black Japanese thread </br>\r\n- 3 card slots which fits up to 2 cards each plus some bills (Total of 6-7 cards + cash) </br>', 1, '2020-05-26', '2020-05-26'),
 (13, 'The Mountain Tote - Tan & Dark Brown', 'BG', 'Tan DarkBrown', '350', 30, 0, 'MountainToteTanDarkBrown.jpg', 'MarketToteOliveRuggedTan.jpg', NULL, 'The Mountain Tote is a rugged thing of beauty which will last you forever! Made from pull up leather it has a unique look when the leather is folded or bent. It is fully handcrafted right from the first cut. It features an inside pocket and a key chain hook so you don\'t loose your keys at the bottom. It\'s perfect for anyone who needs all of her things at their finger tips. It measures 18\" wide, 14\" tall, and 5\" deep at the base.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- 18\" wide x 14\" height x 5\" depth at base </br>\r\n- Two tone full grain veg tanned leather </br>\r\n- Interior pocket </br>\r\n- Fair trade made </br>\r\n- Hand Hammered Copper hardware </br>\r\n- Interior key chain hook </br>', 1, '2020-05-26', '2020-05-26'),
 (14, 'The Market Tote - Rose Wood', 'BG', 'RoseWood', '265', 30, 0, 'MarketToteRoseWood.jpg', 'MountainToteTanDarkBrown.jpg', NULL, 'The Mountain Tote is a rugged thing of beauty which will last you forever! Made from pull up leather it has a unique look when the leather is folded or bent. It is fully handcrafted right from the first cut. It features an inside pocket and a key chain hook so you don\'t loose your keys at the bottom. It\'s perfect for anyone who needs all of her things at their finger tips. It measures 18\" wide, 14\" tall, and 5\" deep at the base.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- 18\" wide x 14\" height x 5\" depth at base </br>\r\n- Two tone full grain veg tanned leather </br>\r\n- Interior pocket </br>\r\n- Fair trade made </br>\r\n- Hand Hammered Copper hardware </br>\r\n- Interior key chain hook </br>', 1, '2020-05-26', '2020-05-26'),
 (15, 'The Market Tote - Olive & Rugged Tan', 'BG', 'RuggedTan', '289', 27, 0, 'MarketToteOliveRuggedTan.jpg', 'MarketToteRosewood.jpg', NULL, 'The Mountain Tote is a rugged thing of beauty which will last you forever! Made from pull up leather it has a unique look when the leather is folded or bent. It is fully handcrafted right from the first cut. It features an inside pocket and a key chain hook so you don\'t loose your keys at the bottom. It\'s perfect for anyone who needs all of her things at their finger tips. It measures 18\" wide, 14\" tall, and 5\" deep at the base.\r\n</br>\r\nFeatures: </br>\r\n- 100% handcrafted </br>\r\n- 18\" wide x 14\" height x 5\" depth at base </br>\r\n- Two tone full grain veg tanned leather </br>\r\n- Interior pocket </br>\r\n- Fair trade made </br>\r\n- Hand Hammered Copper hardware </br>\r\n- Interior key chain hook </br>', 1, '2020-05-26', '2020-05-26'),
-(16, 'Limited Edition Uncharted Satchel - English Tan', 'BG', 'BuckBrown', '899', 29, 0, 'UnchartedSatchel.jpg', 'UnchartedSatchel.jpg', NULL, 'The Uncharted Satchel is a rugged thing of beauty which will last you forever! Made from pull up leather it has a unique look when the leather is folded or bent. It is fully handcrafted right from the first cut. It features an inside laptop sleeve which fits a 15\" MacBook Air and pocket for your items.\r\n</br>\r\n** If you are local and wish to pick up your order, please type in \"PICKUP\" in the discount code dialogue box when checking out.\r\n</br>\r\nFeatures:</br> \r\n- 100% handcrafted </br> \r\n- 16\" wide x 10\" height x 5\" depth at base </br>\r\n- Full grain leather </br>\r\n- Interior pocket with pen loop and sleeve </br>\r\n- Adjustable Tuck locks for quick access to interior of bag </br>\r\n- Adjustable shoulder strap </br>\r\n- Pass Through Strap on back to use with rollable luggage </br>\r\n- Fair trade made </br>\r\n- Antique brass hardware </br>\r\n- Hand hammered copper rivets </br>\r\n- Hand Stitched Gussets for maximum strength and durability </br>', 1, '2020-05-26', '2020-05-26'),
-(17, 'LKG Belt - Medium Brown English Bridle', 'BL', 'Buck Brown', '115', 19, 1, 'BeltMediumBrownEnglishBridle.jpg', 'BeltMediumBrownEnglishBridle_01.jpg,,BeltMediumBrownEnglishBridle_02.jpg,,BeltMediumBrownEnglishBridle_03.jpg', NULL, 'Made from the finest of leathers, the LKG belt will last you many years. It features an antique nickel rolling belt buckle which makes threading the belt very easy and smooth. It also features hand hammered copper rivets which are extremely durable. It measures 1.5\" wide and comes in any custom length. Please select the correct belt length in the drop down menu. Look at the chart below to see the correct way to measure your belt so that we can make it perfectly fit your waistline.', 1, '2020-06-14', '2020-06-14'),
-(18, 'LKG Key Chain - Rugged Tan', 'BL', 'RuggedTan', '50', 27, 3, 'KeyChainRuggedTan.jpg', 'KeyChainRuggedTan_01.jpg', 0, 'The LKG Key Chain is crafted from premium full grain leather and will age beautifully. It is fitted with a top quality antique brass key hook and key ring which provides superior strength and durability.\r\n<br/>\r\n\r\n** If you are local and wish to pick up your order, please type in \"PICKUP\" in the discount code dialogue box when checking out.', 1, '2020-06-14', '2020-06-14'),
+(16, 'Limited Edition Uncharted Satchel - English Tan', 'BG', 'BuckBrown', '899', 28, 1, 'UnchartedSatchel.jpg', 'UnchartedSatchel.jpg', NULL, 'The Uncharted Satchel is a rugged thing of beauty which will last you forever! Made from pull up leather it has a unique look when the leather is folded or bent. It is fully handcrafted right from the first cut. It features an inside laptop sleeve which fits a 15\" MacBook Air and pocket for your items.\r\n</br>\r\n** If you are local and wish to pick up your order, please type in \"PICKUP\" in the discount code dialogue box when checking out.\r\n</br>\r\nFeatures:</br> \r\n- 100% handcrafted </br> \r\n- 16\" wide x 10\" height x 5\" depth at base </br>\r\n- Full grain leather </br>\r\n- Interior pocket with pen loop and sleeve </br>\r\n- Adjustable Tuck locks for quick access to interior of bag </br>\r\n- Adjustable shoulder strap </br>\r\n- Pass Through Strap on back to use with rollable luggage </br>\r\n- Fair trade made </br>\r\n- Antique brass hardware </br>\r\n- Hand hammered copper rivets </br>\r\n- Hand Stitched Gussets for maximum strength and durability </br>', 1, '2020-05-26', '2020-05-26'),
+(17, 'LKG Belt - Medium Brown English Bridle', 'BL', 'Buck Brown', '115', 17, 3, 'BeltMediumBrownEnglishBridle.jpg', 'BeltMediumBrownEnglishBridle_01.jpg,,BeltMediumBrownEnglishBridle_02.jpg,,BeltMediumBrownEnglishBridle_03.jpg', NULL, 'Made from the finest of leathers, the LKG belt will last you many years. It features an antique nickel rolling belt buckle which makes threading the belt very easy and smooth. It also features hand hammered copper rivets which are extremely durable. It measures 1.5\" wide and comes in any custom length. Please select the correct belt length in the drop down menu. Look at the chart below to see the correct way to measure your belt so that we can make it perfectly fit your waistline.', 1, '2020-06-14', '2020-06-14'),
+(18, 'LKG Key Chain - Rugged Tan', 'BL', 'RuggedTan', '50', 24, 6, 'KeyChainRuggedTan.jpg', 'KeyChainRuggedTan_01.jpg', 0, 'The LKG Key Chain is crafted from premium full grain leather and will age beautifully. It is fitted with a top quality antique brass key hook and key ring which provides superior strength and durability.\r\n<br/>\r\n\r\n** If you are local and wish to pick up your order, please type in \"PICKUP\" in the discount code dialogue box when checking out.', 1, '2020-06-14', '2020-06-14'),
 (19, 'LKG Key Chain - Stealth Black', 'BL', 'Black', '50', 0, 0, 'KeyChainStealthBlack.jpg', 'KeyChainStealthBlack_01.jpg', NULL, 'The LKG Key Chain is crafted from premium full grain leather and will age beautifully. It is fitted with a top quality antique brass key hook and key ring which provides superior strength and durability.', 1, '2020-06-14', '2020-06-14');
 
 -- --------------------------------------------------------
@@ -242,7 +285,9 @@ INSERT INTO `users` (`Userid`, `Username`, `Password`, `Name`, `Phone`, `Email`,
 ('UR03', 'user', 'e10adc3949ba59abbe56e057f20f883e', 'Linh', '0395482130', 'van@gmail.com', '', 3, '2020-06-10', 1),
 ('UR04', 'user11', 'e10adc3949ba59abbe56e057f20f883e', 'avc', '0369258100', 'ava@gmail.com', '', 3, '2020-06-13', 0),
 ('UR05', 'nam', 'e10adc3949ba59abbe56e057f20f883e', 'Hoang', '0357159275', 'nam@gmail.com', '273 An Dương Vương, Q.5', 3, '2020-06-13', 1),
-('UR06', 'user2', 'e10adc3949ba59abbe56e057f20f883e', 'avc', '0369258101', 'avaaa@gmail.com', '', 3, '2020-06-15', 1);
+('UR06', 'user2', 'e10adc3949ba59abbe56e057f20f883e', 'avc', '0369258101', 'avaaa@gmail.com', '', 3, '2020-06-15', 1),
+('UR07', 'linh', 'e10adc3949ba59abbe56e057f20f883e', 'linh', '0369258147', 'vanlinhh@gmail.com', '', 3, '2020-11-22', 1),
+('UR08', 'user01', 'e10adc3949ba59abbe56e057f20f883e', 'user01', '0395821457', 'user01@gmail.com', '', 3, '2020-12-08', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -324,6 +369,22 @@ ALTER TABLE `products`
 --
 ALTER TABLE `role`
   MODIFY `Roleid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `orderdetail`
+--
+ALTER TABLE `orderdetail`
+  ADD CONSTRAINT `orderdetail_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`);
+
+--
+-- Các ràng buộc cho bảng `role`
+--
+ALTER TABLE `role`
+  ADD CONSTRAINT `role_ibfk_1` FOREIGN KEY (`Roleid`) REFERENCES `users` (`Roleid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

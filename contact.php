@@ -121,6 +121,7 @@ session_start();
             
             
             <li class="active"><a href="contact.php">Contact</a></li>
+            <li><a href="myorder.php">My order</a></li>
           </ul>
         </div>
       </nav>
