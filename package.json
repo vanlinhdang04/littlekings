@@ -1,0 +1,12 @@
+{
+  "name": "web-shopping",
+  "version": "0.1.0",
+  "homepage": "https://vanlinhdang04.github.io/littlekings/",
+  "dependencies": {
+    "gh-pages": "npm:undefined@*"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
